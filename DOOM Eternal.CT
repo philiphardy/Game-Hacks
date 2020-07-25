@@ -1,0 +1,1025 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Infinite Ammo"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version: 
+  Date   : 2020-07-11
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,01 73 40 8B 73 40) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+1997BC8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov esi,[rbx+40]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 73 40 8B 73 40
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+1997BC8
+
+"DOOMEternalx64vk.exe"+1997BAC: 3B FF                 -  cmp edi,edi
+"DOOMEternalx64vk.exe"+1997BAE: 0F 4F FF              -  cmovg edi,edi
+"DOOMEternalx64vk.exe"+1997BB1: 89 BB 14 01 00 00     -  mov [rbx+00000114],edi
+"DOOMEternalx64vk.exe"+1997BB7: EB 43                 -  jmp DOOMEternalx64vk.exe+1997BFC
+"DOOMEternalx64vk.exe"+1997BB9: 33 FF                 -  xor edi,edi
+"DOOMEternalx64vk.exe"+1997BBB: 40 84 ED              -  test bpl,bpl
+"DOOMEternalx64vk.exe"+1997BBE: 74 08                 -  je DOOMEternalx64vk.exe+1997BC8
+"DOOMEternalx64vk.exe"+1997BC0: 39 7B 40              -  cmp [rbx+40],edi
+"DOOMEternalx64vk.exe"+1997BC3: 7D 03                 -  jnl DOOMEternalx64vk.exe+1997BC8
+"DOOMEternalx64vk.exe"+1997BC5: 89 7B 40              -  mov [rbx+40],edi
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+1997BC8: 01 73 40              -  add [rbx+40],esi
+"DOOMEternalx64vk.exe"+1997BCB: 8B 73 40              -  mov esi,[rbx+40]
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+1997BCE: 40 84 ED              -  test bpl,bpl
+"DOOMEternalx64vk.exe"+1997BD1: 74 19                 -  je DOOMEternalx64vk.exe+1997BEC
+"DOOMEternalx64vk.exe"+1997BD3: 48 8B 03              -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+1997BD6: 48 8B CB              -  mov rcx,rbx
+"DOOMEternalx64vk.exe"+1997BD9: FF 90 D8 00 00 00     -  call qword ptr [rax+000000D8]
+"DOOMEternalx64vk.exe"+1997BDF: 85 F6                 -  test esi,esi
+"DOOMEternalx64vk.exe"+1997BE1: 78 14                 -  js DOOMEternalx64vk.exe+1997BF7
+"DOOMEternalx64vk.exe"+1997BE3: 3B F0                 -  cmp esi,eax
+"DOOMEternalx64vk.exe"+1997BE5: 8B FE                 -  mov edi,esi
+"DOOMEternalx64vk.exe"+1997BE7: 0F 4F F8              -  cmovg edi,eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Infinite Dash"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version: 
+  Date   : 2020-07-11
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,7F 14 48 8B 03 48 8B CB FF 50) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+15C46C0)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov rax,[rbx]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 7F 14 48 8B 03
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+15C46C0
+
+"DOOMEternalx64vk.exe"+15C468B: 48 8D 94 24 90 00 00 00  -  lea rdx,[rsp+00000090]
+"DOOMEternalx64vk.exe"+15C4693: E8 88 E8 EA FE           -  call DOOMEternalx64vk.exe+472F20
+"DOOMEternalx64vk.exe"+15C4698: 0F 57 C0                 -  xorps xmm0,xmm0
+"DOOMEternalx64vk.exe"+15C469B: F3 48 0F 2A 00           -  cvtsi2ss xmm0,[rax]
+"DOOMEternalx64vk.exe"+15C46A0: F3 41 0F 59 C2           -  mulss xmm0,xmm10
+"DOOMEternalx64vk.exe"+15C46A5: 44 0F 28 54 24 20        -  movaps xmm10,[rsp+20]
+"DOOMEternalx64vk.exe"+15C46AB: F3 0F 2C C0              -  cvttss2si eax,xmm0
+"DOOMEternalx64vk.exe"+15C46AF: 48 63 C8                 -  movsxd  rcx,eax
+"DOOMEternalx64vk.exe"+15C46B2: 48 29 8B E8 00 00 00     -  sub [rbx+000000E8],rcx
+"DOOMEternalx64vk.exe"+15C46B9: 48 39 BB E8 00 00 00     -  cmp [rbx+000000E8],rdi
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+15C46C0: 7F 14                    -  jg DOOMEternalx64vk.exe+15C46D6
+"DOOMEternalx64vk.exe"+15C46C2: 48 8B 03                 -  mov rax,[rbx]
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+15C46C5: 48 8B CB                 -  mov rcx,rbx
+"DOOMEternalx64vk.exe"+15C46C8: FF 50 50                 -  call qword ptr [rax+50]
+"DOOMEternalx64vk.exe"+15C46CB: 48 89 BB E8 00 00 00     -  mov [rbx+000000E8],rdi
+"DOOMEternalx64vk.exe"+15C46D2: 40 88 7B 7B              -  mov [rbx+7B],dil
+"DOOMEternalx64vk.exe"+15C46D6: 48 8B AC 24 A0 00 00 00  -  mov rbp,[rsp+000000A0]
+"DOOMEternalx64vk.exe"+15C46DE: 48 8B 74 24 78           -  mov rsi,[rsp+78]
+"DOOMEternalx64vk.exe"+15C46E3: 48 8B 94 24 98 00 00 00  -  mov rdx,[rsp+00000098]
+"DOOMEternalx64vk.exe"+15C46EB: 48 8B CB                 -  mov rcx,rbx
+"DOOMEternalx64vk.exe"+15C46EE: E8 8D 1B 00 00           -  call DOOMEternalx64vk.exe+15C6280
+"DOOMEternalx64vk.exe"+15C46F3: F3 0F 10 43 08           -  movss xmm0,[rbx+08]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Infinite Hazmat"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version: 
+  Date   : 2020-07-11
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,C0 F3 0F 5D DA 48 8B CB) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+15C5E86)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movss xmm3,xmm2
+  mov rcx,rbx
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db F3 0F 5D DA 48 8B CB
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+15C5E86
+
+"DOOMEternalx64vk.exe"+15C5E62: 0F 29 74 24 20           -  movaps [rsp+20],xmm6
+"DOOMEternalx64vk.exe"+15C5E67: F3 0F 10 71 08           -  movss xmm6,[rcx+08]
+"DOOMEternalx64vk.exe"+15C5E6C: F3 0F 5C F1              -  subss xmm6,xmm1
+"DOOMEternalx64vk.exe"+15C5E70: FF 50 28                 -  call qword ptr [rax+28]
+"DOOMEternalx64vk.exe"+15C5E73: 48 8B 03                 -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+15C5E76: 0F 57 D2                 -  xorps xmm2,xmm2
+"DOOMEternalx64vk.exe"+15C5E79: F3 0F 10 D0              -  movss xmm2,xmm0
+"DOOMEternalx64vk.exe"+15C5E7D: 0F 28 CE                 -  movaps xmm1,xmm6
+"DOOMEternalx64vk.exe"+15C5E80: 0F 28 D9                 -  movaps xmm3,xmm1
+"DOOMEternalx64vk.exe"+15C5E83: 0F 57 C0                 -  xorps xmm0,xmm0
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+15C5E86: F3 0F 5D DA              -  minss xmm3,xmm2
+"DOOMEternalx64vk.exe"+15C5E8A: 48 8B CB                 -  mov rcx,rbx
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+15C5E8D: F3 0F 10 53 0C           -  movss xmm2,[rbx+0C]
+"DOOMEternalx64vk.exe"+15C5E92: F3 0F 5F D8              -  maxss xmm3,xmm0
+"DOOMEternalx64vk.exe"+15C5E96: 0F 28 CB                 -  movaps xmm1,xmm3
+"DOOMEternalx64vk.exe"+15C5E99: F3 0F 11 5B 08           -  movss [rbx+08],xmm3
+"DOOMEternalx64vk.exe"+15C5E9E: 0F 28 74 24 20           -  movaps xmm6,[rsp+20]
+"DOOMEternalx64vk.exe"+15C5EA3: 48 83 C4 30              -  add rsp,30
+"DOOMEternalx64vk.exe"+15C5EA7: 5B                       -  pop rbx
+"DOOMEternalx64vk.exe"+15C5EA8: 48 FF 60 48              -  jmp qword ptr [rax+48]
+"DOOMEternalx64vk.exe"+15C5EAC: CC                       -  int 3 
+"DOOMEternalx64vk.exe"+15C5EAD: CC                       -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"Infinite Jump"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version: 
+  Date   : 2020-07-11
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,89 83 80 41 00 00) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+A777B4)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 83 80 41 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+A777B4
+
+"DOOMEternalx64vk.exe"+A7777D: 8B 83 80 41 00 00           -  mov eax,[rbx+00004180]
+"DOOMEternalx64vk.exe"+A77783: B9 02 00 00 00              -  mov ecx,00000002
+"DOOMEternalx64vk.exe"+A77788: 44 0F 28 4C 24 70           -  movaps xmm9,[rsp+70]
+"DOOMEternalx64vk.exe"+A7778E: FF C0                       -  inc eax
+"DOOMEternalx64vk.exe"+A77790: 44 0F 28 84 24 80 00 00 00  -  movaps xmm8,[rsp+00000080]
+"DOOMEternalx64vk.exe"+A77799: 3B C1                       -  cmp eax,ecx
+"DOOMEternalx64vk.exe"+A7779B: 0F 28 BC 24 90 00 00 00     -  movaps xmm7,[rsp+00000090]
+"DOOMEternalx64vk.exe"+A777A3: 0F 28 B4 24 A0 00 00 00     -  movaps xmm6,[rsp+000000A0]
+"DOOMEternalx64vk.exe"+A777AB: 0F 4C C1                    -  cmovl eax,ecx
+"DOOMEternalx64vk.exe"+A777AE: FF 83 88 41 00 00           -  inc [rbx+00004188]
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+A777B4: 89 83 80 41 00 00           -  mov [rbx+00004180],eax
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+A777BA: B0 01                       -  mov al,01
+"DOOMEternalx64vk.exe"+A777BC: C6 83 FC 47 00 00 00        -  mov byte ptr [rbx+000047FC],00
+"DOOMEternalx64vk.exe"+A777C3: 48 81 C4 B0 00 00 00        -  add rsp,000000B0
+"DOOMEternalx64vk.exe"+A777CA: 5B                          -  pop rbx
+"DOOMEternalx64vk.exe"+A777CB: C3                          -  ret 
+"DOOMEternalx64vk.exe"+A777CC: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+A777CD: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+A777CE: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+A777CF: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+A777D0: 40 55                       -  push rbp
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Infinite Health"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version:
+  Date   : 2020-07-10
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,00 F3 0F 10 44 24 4C F3 0F 11 44 1E 1C) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+16EFBEC)
+
+label(code)
+label(cpu)
+label(prereturn)
+label(return)
+
+newmem:
+
+
+code:
+  pushf
+  cmp [rbx+124],1
+  jne cpu
+  jmp prereturn
+
+
+cpu:
+  movss [rsi+rbx+1C],xmm0
+  jmp prereturn
+
+prereturn:
+  popf
+  jmp return
+
+
+INJECT+07:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+07:
+  db F3 0F 11 44 1E 1C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+16EFBEC
+
+"DOOMEternalx64vk.exe"+16EFBB0: 48 8B 84 24 D0 00 00 00           -  mov rax,[rsp+000000D0]
+"DOOMEternalx64vk.exe"+16EFBB8: 48 3B 83 D0 00 00 00              -  cmp rax,[rbx+000000D0]
+"DOOMEternalx64vk.exe"+16EFBBF: 74 07                             -  je DOOMEternalx64vk.exe+16EFBC8
+"DOOMEternalx64vk.exe"+16EFBC1: 48 89 83 D0 00 00 00              -  mov [rbx+000000D0],rax
+"DOOMEternalx64vk.exe"+16EFBC8: 80 7C 24 54 00                    -  cmp byte ptr [rsp+54],00
+"DOOMEternalx64vk.exe"+16EFBCD: 0F 28 C6                          -  movaps xmm0,xmm6
+"DOOMEternalx64vk.exe"+16EFBD0: F3 0F 58 83 C8 00 00 00           -  addss xmm0,[rbx+000000C8]
+"DOOMEternalx64vk.exe"+16EFBD8: F3 0F 10 7C 24 48                 -  movss xmm7,[rsp+48]
+"DOOMEternalx64vk.exe"+16EFBDE: F3 0F 11 83 C8 00 00 00           -  movss [rbx+000000C8],xmm0
+"DOOMEternalx64vk.exe"+16EFBE6: F3 0F 10 44 24 4C                 -  movss xmm0,[rsp+4C]
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+16EFBEC: F3 0F 11 44 1E 1C                 -  movss [rsi+rbx+1C],xmm0
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+16EFBF2: 48 8B B4 24 F8 00 00 00           -  mov rsi,[rsp+000000F8]
+"DOOMEternalx64vk.exe"+16EFBFA: F3 0F 11 3E                       -  movss [rsi],xmm7
+"DOOMEternalx64vk.exe"+16EFBFE: 0F 84 0F 01 00 00                 -  je DOOMEternalx64vk.exe+16EFD13
+"DOOMEternalx64vk.exe"+16EFC04: 48 8B 03                          -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+16EFC07: 41 0F 28 C8                       -  movaps xmm1,xmm8
+"DOOMEternalx64vk.exe"+16EFC0B: 48 8B CB                          -  mov rcx,rbx
+"DOOMEternalx64vk.exe"+16EFC0E: FF 90 98 01 00 00                 -  call qword ptr [rax+00000198]
+"DOOMEternalx64vk.exe"+16EFC14: 48 8B 03                          -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+16EFC17: 41 0F 28 C8                       -  movaps xmm1,xmm8
+"DOOMEternalx64vk.exe"+16EFC1B: 48 8B CB                          -  mov rcx,rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Infinite Health + Insta Kill"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version:
+  Date   : 2020-07-10
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,00 F3 0F 10 44 24 4C F3 0F 11 44 1E 1C) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+16EFBEC)
+
+label(code)
+label(cpu)
+label(prereturn)
+label(return)
+
+newmem:
+
+
+code:
+  pushf
+  cmp [rbx+124],1
+  jne cpu
+  jmp prereturn
+
+
+cpu:
+  xorps xmm0,xmm0
+  movss [rsi+rbx+1C],xmm0
+  jmp prereturn
+
+prereturn:
+  popf
+  jmp return
+
+
+INJECT+07:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+07:
+  db F3 0F 11 44 1E 1C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+16EFBEC
+
+"DOOMEternalx64vk.exe"+16EFBB0: 48 8B 84 24 D0 00 00 00           -  mov rax,[rsp+000000D0]
+"DOOMEternalx64vk.exe"+16EFBB8: 48 3B 83 D0 00 00 00              -  cmp rax,[rbx+000000D0]
+"DOOMEternalx64vk.exe"+16EFBBF: 74 07                             -  je DOOMEternalx64vk.exe+16EFBC8
+"DOOMEternalx64vk.exe"+16EFBC1: 48 89 83 D0 00 00 00              -  mov [rbx+000000D0],rax
+"DOOMEternalx64vk.exe"+16EFBC8: 80 7C 24 54 00                    -  cmp byte ptr [rsp+54],00
+"DOOMEternalx64vk.exe"+16EFBCD: 0F 28 C6                          -  movaps xmm0,xmm6
+"DOOMEternalx64vk.exe"+16EFBD0: F3 0F 58 83 C8 00 00 00           -  addss xmm0,[rbx+000000C8]
+"DOOMEternalx64vk.exe"+16EFBD8: F3 0F 10 7C 24 48                 -  movss xmm7,[rsp+48]
+"DOOMEternalx64vk.exe"+16EFBDE: F3 0F 11 83 C8 00 00 00           -  movss [rbx+000000C8],xmm0
+"DOOMEternalx64vk.exe"+16EFBE6: F3 0F 10 44 24 4C                 -  movss xmm0,[rsp+4C]
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+16EFBEC: F3 0F 11 44 1E 1C                 -  movss [rsi+rbx+1C],xmm0
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+16EFBF2: 48 8B B4 24 F8 00 00 00           -  mov rsi,[rsp+000000F8]
+"DOOMEternalx64vk.exe"+16EFBFA: F3 0F 11 3E                       -  movss [rsi],xmm7
+"DOOMEternalx64vk.exe"+16EFBFE: 0F 84 0F 01 00 00                 -  je DOOMEternalx64vk.exe+16EFD13
+"DOOMEternalx64vk.exe"+16EFC04: 48 8B 03                          -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+16EFC07: 41 0F 28 C8                       -  movaps xmm1,xmm8
+"DOOMEternalx64vk.exe"+16EFC0B: 48 8B CB                          -  mov rcx,rbx
+"DOOMEternalx64vk.exe"+16EFC0E: FF 90 98 01 00 00                 -  call qword ptr [rax+00000198]
+"DOOMEternalx64vk.exe"+16EFC14: 48 8B 03                          -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+16EFC17: 41 0F 28 C8                       -  movaps xmm1,xmm8
+"DOOMEternalx64vk.exe"+16EFC1B: 48 8B CB                          -  mov rcx,rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"Infinite Skill Abilities"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version: 
+  Date   : 2020-07-11
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,44 01 84 B1 6C BD 03 00) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+16E4891)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rcx+rsi*4+0003BD6C],10
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 01 84 B1 6C BD 03 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+16E4891
+
+"DOOMEternalx64vk.exe"+16E486F: CC                       -  int 3 
+"DOOMEternalx64vk.exe"+16E4870: 48 89 5C 24 08           -  mov [rsp+08],rbx
+"DOOMEternalx64vk.exe"+16E4875: 48 89 6C 24 10           -  mov [rsp+10],rbp
+"DOOMEternalx64vk.exe"+16E487A: 48 89 74 24 18           -  mov [rsp+18],rsi
+"DOOMEternalx64vk.exe"+16E487F: 57                       -  push rdi
+"DOOMEternalx64vk.exe"+16E4880: 48 83 EC 20              -  sub rsp,20
+"DOOMEternalx64vk.exe"+16E4884: 48 63 F2                 -  movsxd  rsi,edx
+"DOOMEternalx64vk.exe"+16E4887: 41 0F B6 D9              -  movzx ebx,r9l
+"DOOMEternalx64vk.exe"+16E488B: 41 8B E8                 -  mov ebp,r8d
+"DOOMEternalx64vk.exe"+16E488E: 48 8B F9                 -  mov rdi,rcx
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+16E4891: 44 01 84 B1 6C BD 03 00  -  add [rcx+rsi*4+0003BD6C],r8d
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+16E4899: 45 85 C0                 -  test r8d,r8d
+"DOOMEternalx64vk.exe"+16E489C: 0F 8E C6 00 00 00        -  jng DOOMEternalx64vk.exe+16E4968
+"DOOMEternalx64vk.exe"+16E48A2: 44 01 84 B1 84 BD 03 00  -  add [rcx+rsi*4+0003BD84],r8d
+"DOOMEternalx64vk.exe"+16E48AA: 8B D6                    -  mov edx,esi
+"DOOMEternalx64vk.exe"+16E48AC: 48 81 C1 98 50 02 00     -  add rcx,00025098
+"DOOMEternalx64vk.exe"+16E48B3: E8 68 D8 ED FF           -  call DOOMEternalx64vk.exe+15C2120
+"DOOMEternalx64vk.exe"+16E48B8: 84 DB                    -  test bl,bl
+"DOOMEternalx64vk.exe"+16E48BA: 0F 85 A8 00 00 00        -  jne DOOMEternalx64vk.exe+16E4968
+"DOOMEternalx64vk.exe"+16E48C0: 33 DB                    -  xor ebx,ebx
+"DOOMEternalx64vk.exe"+16E48C2: 8B CE                    -  mov ecx,esi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Insta Kill"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version:
+  Date   : 2020-07-10
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,00 F3 0F 10 44 24 4C F3 0F 11 44 1E 1C) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+16EFBEC)
+
+label(code)
+label(cpu)
+label(prereturn)
+label(return)
+
+newmem:
+
+
+code:
+  pushf
+  cmp [rbx+124],1
+  jne cpu
+  jmp prereturn
+
+
+cpu:
+  xorps xmm0,xmm0
+  jmp prereturn
+
+prereturn:
+  movss [rsi+rbx+1C],xmm0
+  popf
+  jmp return
+
+
+INJECT+07:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+07:
+  db F3 0F 11 44 1E 1C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+16EFBEC
+
+"DOOMEternalx64vk.exe"+16EFBB0: 48 8B 84 24 D0 00 00 00           -  mov rax,[rsp+000000D0]
+"DOOMEternalx64vk.exe"+16EFBB8: 48 3B 83 D0 00 00 00              -  cmp rax,[rbx+000000D0]
+"DOOMEternalx64vk.exe"+16EFBBF: 74 07                             -  je DOOMEternalx64vk.exe+16EFBC8
+"DOOMEternalx64vk.exe"+16EFBC1: 48 89 83 D0 00 00 00              -  mov [rbx+000000D0],rax
+"DOOMEternalx64vk.exe"+16EFBC8: 80 7C 24 54 00                    -  cmp byte ptr [rsp+54],00
+"DOOMEternalx64vk.exe"+16EFBCD: 0F 28 C6                          -  movaps xmm0,xmm6
+"DOOMEternalx64vk.exe"+16EFBD0: F3 0F 58 83 C8 00 00 00           -  addss xmm0,[rbx+000000C8]
+"DOOMEternalx64vk.exe"+16EFBD8: F3 0F 10 7C 24 48                 -  movss xmm7,[rsp+48]
+"DOOMEternalx64vk.exe"+16EFBDE: F3 0F 11 83 C8 00 00 00           -  movss [rbx+000000C8],xmm0
+"DOOMEternalx64vk.exe"+16EFBE6: F3 0F 10 44 24 4C                 -  movss xmm0,[rsp+4C]
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+16EFBEC: F3 0F 11 44 1E 1C                 -  movss [rsi+rbx+1C],xmm0
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+16EFBF2: 48 8B B4 24 F8 00 00 00           -  mov rsi,[rsp+000000F8]
+"DOOMEternalx64vk.exe"+16EFBFA: F3 0F 11 3E                       -  movss [rsi],xmm7
+"DOOMEternalx64vk.exe"+16EFBFE: 0F 84 0F 01 00 00                 -  je DOOMEternalx64vk.exe+16EFD13
+"DOOMEternalx64vk.exe"+16EFC04: 48 8B 03                          -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+16EFC07: 41 0F 28 C8                       -  movaps xmm1,xmm8
+"DOOMEternalx64vk.exe"+16EFC0B: 48 8B CB                          -  mov rcx,rbx
+"DOOMEternalx64vk.exe"+16EFC0E: FF 90 98 01 00 00                 -  call qword ptr [rax+00000198]
+"DOOMEternalx64vk.exe"+16EFC14: 48 8B 03                          -  mov rax,[rbx]
+"DOOMEternalx64vk.exe"+16EFC17: 41 0F 28 C8                       -  movaps xmm1,xmm8
+"DOOMEternalx64vk.exe"+16EFC1B: 48 8B CB                          -  mov rcx,rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"Infinite Grenade Launcher"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version: 
+  Date   : 2020-07-11
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,F3 0F 11 97 84 23 00 00) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+19DB2F0)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  xorps xmm2,xmm2
+  movss [rdi+00002384],xmm2
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 97 84 23 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+19DB2F0
+
+"DOOMEternalx64vk.exe"+19DB2CB: 48 8D 54 24 78           -  lea rdx,[rsp+78]
+"DOOMEternalx64vk.exe"+19DB2D0: 0F 57 D2                 -  xorps xmm2,xmm2
+"DOOMEternalx64vk.exe"+19DB2D3: 48 89 5C 24 60           -  mov [rsp+60],rbx
+"DOOMEternalx64vk.exe"+19DB2D8: 0F 28 C7                 -  movaps xmm0,xmm7
+"DOOMEternalx64vk.exe"+19DB2DB: 0F 57 C9                 -  xorps xmm1,xmm1
+"DOOMEternalx64vk.exe"+19DB2DE: F3 0F 10 C8              -  movss xmm1,xmm0
+"DOOMEternalx64vk.exe"+19DB2E2: 44 8B C6                 -  mov r8d,esi
+"DOOMEternalx64vk.exe"+19DB2E5: F3 0F 10 D6              -  movss xmm2,xmm6
+"DOOMEternalx64vk.exe"+19DB2E9: 48 8B CF                 -  mov rcx,rdi
+"DOOMEternalx64vk.exe"+19DB2EC: F3 0F 5D D1              -  minss xmm2,xmm1
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+19DB2F0: F3 0F 11 97 84 23 00 00  -  movss [rdi+00002384],xmm2
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+19DB2F8: FF 90 70 04 00 00        -  call qword ptr [rax+00000470]
+"DOOMEternalx64vk.exe"+19DB2FE: 48 8B 87 90 23 00 00     -  mov rax,[rdi+00002390]
+"DOOMEternalx64vk.exe"+19DB305: 48 8D 54 24 28           -  lea rdx,[rsp+28]
+"DOOMEternalx64vk.exe"+19DB30A: 48 8B 4C 24 78           -  mov rcx,[rsp+78]
+"DOOMEternalx64vk.exe"+19DB30F: 48 8D 5C 24 20           -  lea rbx,[rsp+20]
+"DOOMEternalx64vk.exe"+19DB314: 48 03 C9                 -  add rcx,rcx
+"DOOMEternalx64vk.exe"+19DB317: 48 89 44 24 20           -  mov [rsp+20],rax
+"DOOMEternalx64vk.exe"+19DB31C: 48 3B C1                 -  cmp rax,rcx
+"DOOMEternalx64vk.exe"+19DB31F: 48 89 4C 24 28           -  mov [rsp+28],rcx
+"DOOMEternalx64vk.exe"+19DB324: 48 8B CF                 -  mov rcx,rdi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"Infinite Crucible"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMEternalx64vk.exe
+  Version: 
+  Date   : 2020-07-11
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMEternalx64vk.exe,F3 0F 11 5B 08 FF 50 48 0F) // should be unique
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+15C60C2)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movss [rbx+08],xmm2
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 5B 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DOOMEternalx64vk.exe"+15C60C2
+
+"DOOMEternalx64vk.exe"+15C609E: 0F 57 D2                    -  xorps xmm2,xmm2
+"DOOMEternalx64vk.exe"+15C60A1: 0F 28 CE                    -  movaps xmm1,xmm6
+"DOOMEternalx64vk.exe"+15C60A4: F3 0F 10 D0                 -  movss xmm2,xmm0
+"DOOMEternalx64vk.exe"+15C60A8: F3 0F 10 D9                 -  movss xmm3,xmm1
+"DOOMEternalx64vk.exe"+15C60AC: F3 0F 5D DA                 -  minss xmm3,xmm2
+"DOOMEternalx64vk.exe"+15C60B0: 0F 57 C0                    -  xorps xmm0,xmm0
+"DOOMEternalx64vk.exe"+15C60B3: F3 0F 10 53 0C              -  movss xmm2,[rbx+0C]
+"DOOMEternalx64vk.exe"+15C60B8: 48 8B CB                    -  mov rcx,rbx
+"DOOMEternalx64vk.exe"+15C60BB: F3 0F 5F D8                 -  maxss xmm3,xmm0
+"DOOMEternalx64vk.exe"+15C60BF: 0F 28 CB                    -  movaps xmm1,xmm3
+// ---------- INJECTING HERE ----------
+"DOOMEternalx64vk.exe"+15C60C2: F3 0F 11 5B 08              -  movss [rbx+08],xmm3
+// ---------- DONE INJECTING  ----------
+"DOOMEternalx64vk.exe"+15C60C7: FF 50 48                    -  call qword ptr [rax+48]
+"DOOMEternalx64vk.exe"+15C60CA: 0F 28 74 24 20              -  movaps xmm6,[rsp+20]
+"DOOMEternalx64vk.exe"+15C60CF: 48 83 C4 30                 -  add rsp,30
+"DOOMEternalx64vk.exe"+15C60D3: 5B                          -  pop rbx
+"DOOMEternalx64vk.exe"+15C60D4: C3                          -  ret 
+"DOOMEternalx64vk.exe"+15C60D5: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+15C60D6: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+15C60D7: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+15C60D8: CC                          -  int 3 
+"DOOMEternalx64vk.exe"+15C60D9: CC                          -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="unnamed structure" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idDeclMenu" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idRenderModelGui" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="48" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="56" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="64" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idDossier_Overlay" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="72" Vartype="4 Bytes" Bytesize="4" RLECount="6" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="96" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="104" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="112" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="116" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="136" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="140" Vartype="4 Bytes" Bytesize="4" RLECount="11" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="184" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="188" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="208" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="212" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="240" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="244" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="272" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="276" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="288" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="296" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="304" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="308" Vartype="4 Bytes" Bytesize="4" RLECount="9" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="344" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="348" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="360" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="376" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="384" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="392" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="396" Vartype="4 Bytes" Bytesize="4" RLECount="67" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="664" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="668" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="696" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="700" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="712" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="728" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="736" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="744" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="748" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1008" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1016" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1020" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1048" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1052" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1056" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1064" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1080" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1088" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1096" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1100" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1360" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1368" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1372" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1400" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1404" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1416" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1432" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1440" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1448" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1452" Vartype="4 Bytes" Bytesize="4" RLECount="67" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1720" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1724" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1752" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1756" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1768" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1784" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1792" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1800" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1804" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2064" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2072" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2076" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2104" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2108" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2120" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2136" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2144" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2152" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2156" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2416" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2424" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2428" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2456" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2460" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2472" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2488" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2496" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2504" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2508" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2768" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2776" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2780" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2808" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2812" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2824" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2840" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2848" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2856" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2860" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3120" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3128" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3132" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3160" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3164" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3176" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3192" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3200" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3208" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3212" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3472" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3480" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3484" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3512" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3516" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3528" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3544" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3552" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3560" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3564" Vartype="4 Bytes" Bytesize="4" RLECount="65" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3824" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSWFWidgetActionHandler" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3832" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3836" Vartype="4 Bytes" Bytesize="4" RLECount="7" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3864" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3868" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3880" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3896" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3904" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3912" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3916" Vartype="4 Bytes" Bytesize="4" RLECount="45" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="unnamed structure" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="8" Vartype="Float" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idSoundEvent" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="32" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="36" Vartype="Double" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="44" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="56" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="68" Vartype="Double" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" RLECount="9" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="112" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="116" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="128" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Hexadecimal"/>
+        <Element Offset="136" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idPlayer" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="144" Vartype="Byte" Bytesize="1" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="145" Vartype="String" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="149" Vartype="Byte" Bytesize="1" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="176" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="180" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="200" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="204" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="224" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="228" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="248" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="272" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="276" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="280" Vartype="Double" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="288" Vartype="Float" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="300" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="304" Vartype="Double" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="312" Vartype="Float" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="332" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="336" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="344" Vartype="4 Bytes" Bytesize="4" RLECount="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="376" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="380" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="400" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="404" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="424" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="428" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="448" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="452" Vartype="Double" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="460" Vartype="Float" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="472" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="480" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="488" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="496" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="500" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="512" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="516" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="520" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="528" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="536" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="540" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="544" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Hexadecimal"/>
+        <Element Offset="552" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idPlayer" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="560" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="568" Vartype="Byte" Bytesize="1" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="569" Vartype="String" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="573" Vartype="Byte" Bytesize="1" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="576" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="584" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="592" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="596" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="600" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="608" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="616" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="620" Vartype="4 Bytes" Bytesize="4" RLECount="271" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1704" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1712" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1720" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1724" Vartype="4 Bytes" Bytesize="4" RLECount="11" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1768" Vartype="Byte" Bytesize="1" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1769" Vartype="String" Bytesize="11" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1780" Vartype="4 Bytes" Bytesize="4" RLECount="45" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1960" Vartype="String" Bytesize="27" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1987" Vartype="Byte" Bytesize="1" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1988" Vartype="4 Bytes" Bytesize="4" RLECount="121" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2472" Vartype="String" Bytesize="46" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2518" Vartype="Byte" Bytesize="1" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2520" Vartype="4 Bytes" Bytesize="4" RLECount="20" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2600" Vartype="Byte" Bytesize="1" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2603" Vartype="2 Bytes" Bytesize="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2605" Vartype="Byte" Bytesize="1" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2608" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idPlayer" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2616" Vartype="4 Bytes" Bytesize="4" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2632" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2640" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2648" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2652" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2656" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2664" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2672" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2680" Vartype="Pointer" Bytesize="8" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2704" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2716" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2720" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2724" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2728" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2736" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idPlayer" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2744" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2752" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idEventArgUser" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2760" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idDeclNotification" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2768" Vartype="Pointer" Bytesize="8" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2784" Vartype="Byte" Bytesize="1" RLECount="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2788" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2808" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2816" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2824" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2828" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2840" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idDeclNotification" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2848" Vartype="Pointer" Bytesize="8" Description="Pointer to instance of idDeclUnlockable" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2856" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2864" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2868" Vartype="4 Bytes" Bytesize="4" RLECount="259" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3904" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3908" Vartype="4 Bytes" Bytesize="4" RLECount="5" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3928" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3932" Vartype="4 Bytes" Bytesize="4" RLECount="41" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>

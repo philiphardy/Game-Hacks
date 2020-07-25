@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Deku Nut"</Description>
+      <LastState Value="20" RealAddress="7FFF371447CE"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+1847CE</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Slingshot"</Description>
+      <LastState Value="30" RealAddress="7FFF371447D1"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+1847D1</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Sticks"</Description>
+      <LastState Value="10" RealAddress="7FFF371447CF"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+1847CF</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Money"</Description>
+      <LastState Value="500" RealAddress="7FFF37144776"/>
+      <VariableType>2 Bytes</VariableType>
+      <Address>mupen64plus.dll+184776</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Health"</Description>
+      <LastState Value="224" RealAddress="7FFF37144772"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+184772</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Bombchu"</Description>
+      <LastState Value="50" RealAddress="7FFF371447D7"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+1847D7</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"Bombs"</Description>
+      <LastState Value="20" RealAddress="7FFF371447CD"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+1847CD</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Magic Beans"</Description>
+      <LastState Value="15" RealAddress="7FFF371447D9"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+1847D9</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"Timer"</Description>
+      <LastState Value="0" RealAddress="7FFF37145B12"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+185B12</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"Magic"</Description>
+      <LastState Value="48" RealAddress="7FFF37144770"/>
+      <VariableType>Byte</VariableType>
+      <Address>mupen64plus.dll+184770</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"Gold Skullchulla"</Description>
+      <LastState Value="101" RealAddress="7FFF37144812"/>
+      <VariableType>Byte</VariableType>
+      <Address>7FFF37144812</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
