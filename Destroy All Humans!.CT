@@ -25,11 +25,8 @@ label(return)
 newmem:
 
 code:
-  push eax
-  mov eax,64
-  cvtsi2ss xmm2,eax
-  movss [rcx+0000073C],xmm2
-  pop eax
+  movss xmm2,[rcx+718]
+  movss [rcx+73C],xmm2
   jmp return
 
 INJECT_INF_AMMO:
