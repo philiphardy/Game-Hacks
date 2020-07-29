@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>2</ID>
       <Description>"Infinite Ammo"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
   Version: 
@@ -98,16 +98,13 @@ newmem:
 
 code:
   pushf
-  cmp [rbx+88],1
-  jne prereturn
-  push eax
-  mov eax,C
-  cvtsi2ss xmm0,eax
-  pop eax
+  cmp [rbx+38],0
+  je prereturn
+  movss xmm0,[rbx+48]
 
 prereturn:
   popf
-  movss [rbx+00000098],xmm0
+  movss [rbx+98],xmm0
   jmp return
 
 INJECT_INF_HEALTH:
@@ -156,7 +153,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>68</ID>
       <Description>"Infinite Health + Insta Kill"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
   Version:
@@ -180,8 +177,8 @@ newmem:
 
 code:
   pushf
-  cmp [rbx+88],1
-  je player
+  cmp [rbx+38],0
+  jne player
   xorps xmm0,xmm0
   jmp prereturn
 
@@ -239,7 +236,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>70</ID>
       <Description>"Infinite Disguise"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
   Version: 
@@ -379,173 +376,12 @@ dealloc(newmem)
 }
 </AssemblerScript>
     </CheatEntry>
-    <CheatEntry>
-      <ID>75</ID>
-      <Description>"Infinite Ship Health"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
-  Version: 
-  Date   : 2020-07-28
-  Author : phili
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT_INF_SHIP_HEALTH,DH-Win64-Shipping.exe,F3 0F 11 83 98 00 00 00 0F 54 15) // should be unique
-alloc(newmem,$1000,"DH-Win64-Shipping.exe"+A379D7)
-
-label(code)
-label(prereturn)
-label(return)
-
-newmem:
-
-code:
-  pushf
-  cmp [rbx+38],0
-  je prereturn
-  movss xmm0,[rbx+48]
-
-prereturn:
-  movss [rbx+00000098],xmm0
-  popf
-  jmp return
-
-INJECT_INF_SHIP_HEALTH:
-  jmp newmem
-  nop 3
-return:
-registersymbol(INJECT_INF_SHIP_HEALTH)
-
-[DISABLE]
-
-INJECT_INF_SHIP_HEALTH:
-  db F3 0F 11 83 98 00 00 00
-
-unregistersymbol(INJECT_INF_SHIP_HEALTH)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: "DH-Win64-Shipping.exe"+A379D7
-
-"DH-Win64-Shipping.exe"+A379AF: 84 C0                    -  test al,al
-"DH-Win64-Shipping.exe"+A379B1: 75 6F                    -  jne DH-Win64-Shipping.exe+A37A22
-"DH-Win64-Shipping.exe"+A379B3: F3 0F 10 43 4C           -  movss xmm0,[rbx+4C]
-"DH-Win64-Shipping.exe"+A379B8: 0F 2F F0                 -  comiss xmm6,xmm0
-"DH-Win64-Shipping.exe"+A379BB: F3 0F 10 93 98 00 00 00  -  movss xmm2,[rbx+00000098]
-"DH-Win64-Shipping.exe"+A379C3: F3 0F 11 53 54           -  movss [rbx+54],xmm2
-"DH-Win64-Shipping.exe"+A379C8: 72 09                    -  jb DH-Win64-Shipping.exe+A379D3
-"DH-Win64-Shipping.exe"+A379CA: F3 0F 10 43 48           -  movss xmm0,[rbx+48]
-"DH-Win64-Shipping.exe"+A379CF: F3 0F 5D C6              -  minss xmm0,xmm6
-"DH-Win64-Shipping.exe"+A379D3: F3 0F 5C D0              -  subss xmm2,xmm0
-// ---------- INJECTING HERE ----------
-"DH-Win64-Shipping.exe"+A379D7: F3 0F 11 83 98 00 00 00  -  movss [rbx+00000098],xmm0
-// ---------- DONE INJECTING  ----------
-"DH-Win64-Shipping.exe"+A379DF: 0F 54 15 4A 19 02 02     -  andps xmm2,[DH-Win64-Shipping.exe+2A59330]
-"DH-Win64-Shipping.exe"+A379E6: 0F 2F 15 F7 87 03 02     -  comiss xmm2,[DH-Win64-Shipping.exe+2A701E4]
-"DH-Win64-Shipping.exe"+A379ED: 76 33                    -  jna DH-Win64-Shipping.exe+A37A22
-"DH-Win64-Shipping.exe"+A379EF: 40 84 F6                 -  test sil,sil
-"DH-Win64-Shipping.exe"+A379F2: 74 08                    -  je DH-Win64-Shipping.exe+A379FC
-"DH-Win64-Shipping.exe"+A379F4: 48 8B CB                 -  mov rcx,rbx
-"DH-Win64-Shipping.exe"+A379F7: E8 54 A4 00 00           -  call DH-Win64-Shipping.exe+A41E50
-"DH-Win64-Shipping.exe"+A379FC: 40 84 FF                 -  test dil,dil
-"DH-Win64-Shipping.exe"+A379FF: 74 21                    -  je DH-Win64-Shipping.exe+A37A22
-"DH-Win64-Shipping.exe"+A37A01: 48 8B 43 30              -  mov rax,[rbx+30]
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>76</ID>
-      <Description>"Infinite Ship Health + Vehicle/Structure Insta Kill"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
-  Version:
-  Date   : 2020-07-28
-  Author : phili
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL,DH-Win64-Shipping.exe,F3 0F 11 83 98 00 00 00 0F 54 15) // should be unique
-alloc(newmem,$1000,"DH-Win64-Shipping.exe"+A379D7)
-
-label(code)
-label(prereturn)
-label(return)
-label(saucer)
-
-newmem:
-
-code:
-  pushf
-  cmp [rbx+38],0
-  jne saucer
-  xorps xmm0,xmm0
-  jmp prereturn
-
-saucer:
-  movss xmm0,[rbx+48]
-
-prereturn:
-  movss [rbx+00000098],xmm0
-  popf
-  jmp return
-
-INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL:
-  jmp newmem
-  nop 3
-return:
-registersymbol(INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL)
-
-[DISABLE]
-
-INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL:
-  db F3 0F 11 83 98 00 00 00
-
-unregistersymbol(INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: "DH-Win64-Shipping.exe"+A379D7
-
-"DH-Win64-Shipping.exe"+A379AF: 84 C0                    -  test al,al
-"DH-Win64-Shipping.exe"+A379B1: 75 6F                    -  jne DH-Win64-Shipping.exe+A37A22
-"DH-Win64-Shipping.exe"+A379B3: F3 0F 10 43 4C           -  movss xmm0,[rbx+4C]
-"DH-Win64-Shipping.exe"+A379B8: 0F 2F F0                 -  comiss xmm6,xmm0
-"DH-Win64-Shipping.exe"+A379BB: F3 0F 10 93 98 00 00 00  -  movss xmm2,[rbx+00000098]
-"DH-Win64-Shipping.exe"+A379C3: F3 0F 11 53 54           -  movss [rbx+54],xmm2
-"DH-Win64-Shipping.exe"+A379C8: 72 09                    -  jb DH-Win64-Shipping.exe+A379D3
-"DH-Win64-Shipping.exe"+A379CA: F3 0F 10 43 48           -  movss xmm0,[rbx+48]
-"DH-Win64-Shipping.exe"+A379CF: F3 0F 5D C6              -  minss xmm0,xmm6
-"DH-Win64-Shipping.exe"+A379D3: F3 0F 5C D0              -  subss xmm2,xmm0
-// ---------- INJECTING HERE ----------
-"DH-Win64-Shipping.exe"+A379D7: F3 0F 11 83 98 00 00 00  -  movss [rbx+00000098],xmm0
-// ---------- DONE INJECTING  ----------
-"DH-Win64-Shipping.exe"+A379DF: 0F 54 15 4A 19 02 02     -  andps xmm2,[DH-Win64-Shipping.exe+2A59330]
-"DH-Win64-Shipping.exe"+A379E6: 0F 2F 15 F7 87 03 02     -  comiss xmm2,[DH-Win64-Shipping.exe+2A701E4]
-"DH-Win64-Shipping.exe"+A379ED: 76 33                    -  jna DH-Win64-Shipping.exe+A37A22
-"DH-Win64-Shipping.exe"+A379EF: 40 84 F6                 -  test sil,sil
-"DH-Win64-Shipping.exe"+A379F2: 74 08                    -  je DH-Win64-Shipping.exe+A379FC
-"DH-Win64-Shipping.exe"+A379F4: 48 8B CB                 -  mov rcx,rbx
-"DH-Win64-Shipping.exe"+A379F7: E8 54 A4 00 00           -  call DH-Win64-Shipping.exe+A41E50
-"DH-Win64-Shipping.exe"+A379FC: 40 84 FF                 -  test dil,dil
-"DH-Win64-Shipping.exe"+A379FF: 74 21                    -  je DH-Win64-Shipping.exe+A37A22
-"DH-Win64-Shipping.exe"+A37A01: 48 8B 43 30              -  mov rax,[rbx+30]
-}
-</AssemblerScript>
-    </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
   <Structures StructVersion="2">
     <Structure Name="character" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
       <Elements>
-        <Element Offset="0" Vartype="Float" Bytesize="4" DisplayMethod="Signed Integer"/>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
         <Element Offset="8" Vartype="Float" Bytesize="4" RLECount="2" DisplayMethod="Signed Integer"/>
         <Element Offset="16" Vartype="Pointer" Bytesize="8" DisplayMethod="Unsigned Integer"/>
         <Element Offset="24" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
@@ -1756,6 +1592,9 @@ dealloc(newmem)
         <Element Offset="4068" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
         <Element Offset="4072" Vartype="Pointer" Bytesize="8" RLECount="3" DisplayMethod="Unsigned Integer"/>
       </Elements>
+    </Structure>
+    <Structure Name="character" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements/>
     </Structure>
   </Structures>
 </CheatTable>
