@@ -3,7 +3,7 @@
   <CheatEntries>
     <CheatEntry>
       <ID>2</ID>
-      <Description>"Infinite Ammo"</Description>
+      <Description>"Infinite Shock/Death Ray Ammo"</Description>
       <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
@@ -373,6 +373,75 @@ dealloc(newmem)
 "DH-Win64-Shipping.exe"+B122EF: 74 58                    -  je DH-Win64-Shipping.exe+B12349
 "DH-Win64-Shipping.exe"+B122F1: 8B 8B B0 05 00 00        -  mov ecx,[rbx+000005B0]
 "DH-Win64-Shipping.exe"+B122F7: 48 8D 54 24 20           -  lea rdx,[rsp+20]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>75</ID>
+      <Description>"Infinite Ammo"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
+  Version: 
+  Date   : 2020-07-29
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_AMMO_NO_RECHARGE,DH-Win64-Shipping.exe,84 33 F6 48 8B 7C 24 38 48 8B 6C 24 58) // should be unique
+alloc(newmem,$1000,"DH-Win64-Shipping.exe"+A45353)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov rbp,63
+  jmp return
+
+INJECT_INF_AMMO_NO_RECHARGE+08:
+  jmp newmem
+return:
+registersymbol(INJECT_INF_AMMO_NO_RECHARGE)
+
+[DISABLE]
+
+INJECT_INF_AMMO_NO_RECHARGE+08:
+  db 48 8B 6C 24 58
+
+unregistersymbol(INJECT_INF_AMMO_NO_RECHARGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DH-Win64-Shipping.exe"+A45353
+
+"DH-Win64-Shipping.exe"+A4532B: 48 8B 8F F8 00 00 00  -  mov rcx,[rdi+000000F8]
+"DH-Win64-Shipping.exe"+A45332: 48 8B D6              -  mov rdx,rsi
+"DH-Win64-Shipping.exe"+A45335: E8 C6 43 01 00        -  call DH-Win64-Shipping.exe+A59700
+"DH-Win64-Shipping.exe"+A4533A: 44 38 B0 E8 00 00 00  -  cmp [rax+000000E8],r14l
+"DH-Win64-Shipping.exe"+A45341: 74 0B                 -  je DH-Win64-Shipping.exe+A4534E
+"DH-Win64-Shipping.exe"+A45343: 48 83 C3 08           -  add rbx,08
+"DH-Win64-Shipping.exe"+A45347: 48 3B DD              -  cmp rbx,rbp
+"DH-Win64-Shipping.exe"+A4534A: 75 84                 -  jne DH-Win64-Shipping.exe+A452D0
+"DH-Win64-Shipping.exe"+A4534C: 33 F6                 -  xor esi,esi
+"DH-Win64-Shipping.exe"+A4534E: 48 8B 7C 24 38        -  mov rdi,[rsp+38]
+// ---------- INJECTING HERE ----------
+"DH-Win64-Shipping.exe"+A45353: 48 8B 6C 24 58        -  mov rbp,[rsp+58]
+// ---------- DONE INJECTING  ----------
+"DH-Win64-Shipping.exe"+A45358: 48 8B 5C 24 50        -  mov rbx,[rsp+50]
+"DH-Win64-Shipping.exe"+A4535D: 4D 85 FF              -  test r15,r15
+"DH-Win64-Shipping.exe"+A45360: 74 08                 -  je DH-Win64-Shipping.exe+A4536A
+"DH-Win64-Shipping.exe"+A45362: 49 8B CF              -  mov rcx,r15
+"DH-Win64-Shipping.exe"+A45365: E8 C6 10 40 00        -  call DH-Win64-Shipping.exe+E46430
+"DH-Win64-Shipping.exe"+A4536A: 4C 8B 7C 24 30        -  mov r15,[rsp+30]
+"DH-Win64-Shipping.exe"+A4536F: 48 8B C6              -  mov rax,rsi
+"DH-Win64-Shipping.exe"+A45372: 48 8B 74 24 60        -  mov rsi,[rsp+60]
+"DH-Win64-Shipping.exe"+A45377: 48 83 C4 40           -  add rsp,40
+"DH-Win64-Shipping.exe"+A4537B: 41 5E                 -  pop r14
 }
 </AssemblerScript>
     </CheatEntry>
