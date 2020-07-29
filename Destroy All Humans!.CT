@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>2</ID>
       <Description>"Infinite Ammo"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
   Version: 
@@ -239,7 +239,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>70</ID>
       <Description>"Infinite Disguise"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
   Version: 
@@ -380,20 +380,6 @@ dealloc(newmem)
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>73</ID>
-      <Description>"No description"</Description>
-      <LastState Value="28" Activated="1" RealAddress="13D4E3E9AB8"/>
-      <VariableType>Float</VariableType>
-      <Address>13D4E3E9AB8</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>74</ID>
-      <Description>"No description"</Description>
-      <LastState Value="28" RealAddress="13D4E3E9A68"/>
-      <VariableType>Float</VariableType>
-      <Address>13D4E3E9A68</Address>
-    </CheatEntry>
-    <CheatEntry>
       <ID>75</ID>
       <Description>"Infinite Ship Health"</Description>
       <LastState/>
@@ -474,7 +460,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>76</ID>
       <Description>"Infinite Ship Health + Vehicle/Structure Insta Kill"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
   Version: 
