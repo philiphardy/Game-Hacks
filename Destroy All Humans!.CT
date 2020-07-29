@@ -463,7 +463,7 @@ dealloc(newmem)
       <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DH-Win64-Shipping.exe
-  Version: 
+  Version:
   Date   : 2020-07-28
   Author : phili
 
@@ -472,7 +472,7 @@ dealloc(newmem)
 
 [ENABLE]
 
-aobscanmodule(INJECT_INF_SHIP_HEALTH,DH-Win64-Shipping.exe,F3 0F 11 83 98 00 00 00 0F 54 15) // should be unique
+aobscanmodule(INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL,DH-Win64-Shipping.exe,F3 0F 11 83 98 00 00 00 0F 54 15) // should be unique
 alloc(newmem,$1000,"DH-Win64-Shipping.exe"+A379D7)
 
 label(code)
@@ -497,18 +497,18 @@ prereturn:
   popf
   jmp return
 
-INJECT_INF_SHIP_HEALTH:
+INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL:
   jmp newmem
   nop 3
 return:
-registersymbol(INJECT_INF_SHIP_HEALTH)
+registersymbol(INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL)
 
 [DISABLE]
 
-INJECT_INF_SHIP_HEALTH:
+INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL:
   db F3 0F 11 83 98 00 00 00
 
-unregistersymbol(INJECT_INF_SHIP_HEALTH)
+unregistersymbol(INJECT_INF_SHIP_HEALTH_AND_INSTA_KILL)
 dealloc(newmem)
 
 {
