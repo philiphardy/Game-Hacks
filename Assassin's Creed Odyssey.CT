@@ -116,7 +116,7 @@ newmem:
 
 code:
   pushf
-  cmp [rbx+A4],0
+  cmp [rbx+48],4
   jne prereturn
   movss xmm8,[rbx+3C]
 
@@ -237,6 +237,88 @@ dealloc(newmem)
 "ACOdyssey.exe"+22C7485: CC                             -  int 3 
 "ACOdyssey.exe"+22C7486: CC                             -  int 3 
 "ACOdyssey.exe"+22C7487: CC                             -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>47</ID>
+      <Description>"Infinite Ship Health"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ACOdyssey.exe
+  Version: 
+  Date   : 2020-08-03
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_SHIP_HEALTH,ACOdyssey.exe,89 30 74 20 85 F6) // should be unique
+alloc(newmem,$1000,"ACOdyssey.exe"+308126B)
+
+label(code)
+label(prereturn)
+label(return)
+
+newmem:
+
+code:
+  pushf
+  cmp [rax+58],0
+  je prereturn
+  mov esi,[rax+4]
+
+prereturn:
+  popf
+  mov [rax],esi
+  je ACOdyssey.exe+308128F
+  test esi,esi
+  jmp return
+
+INJECT_INF_SHIP_HEALTH:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_INF_SHIP_HEALTH)
+
+[DISABLE]
+
+INJECT_INF_SHIP_HEALTH:
+  db 89 30 74 20 85 F6
+
+unregistersymbol(INJECT_INF_SHIP_HEALTH)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+308126B
+
+"ACOdyssey.exe"+3081244: 41 0F B6 E8              -  movzx ebp,r8l
+"ACOdyssey.exe"+3081248: 8B F2                    -  mov esi,edx
+"ACOdyssey.exe"+308124A: 48 8B 01                 -  mov rax,[rcx]
+"ACOdyssey.exe"+308124D: FF 90 40 02 00 00        -  call qword ptr [rax+00000240]
+"ACOdyssey.exe"+3081253: 48 8B 8F 58 01 00 00     -  mov rcx,[rdi+00000158]
+"ACOdyssey.exe"+308125A: 8B 18                    -  mov ebx,[rax]
+"ACOdyssey.exe"+308125C: 48 8B 01                 -  mov rax,[rcx]
+"ACOdyssey.exe"+308125F: FF 90 40 02 00 00        -  call qword ptr [rax+00000240]
+"ACOdyssey.exe"+3081265: C1 EB 1F                 -  shr ebx,1F
+"ACOdyssey.exe"+3081268: 80 F3 01                 -  xor bl,01
+// ---------- INJECTING HERE ----------
+"ACOdyssey.exe"+308126B: 89 30                    -  mov [rax],esi
+"ACOdyssey.exe"+308126D: 74 20                    -  je ACOdyssey.exe+308128F
+"ACOdyssey.exe"+308126F: 85 F6                    -  test esi,esi
+// ---------- DONE INJECTING  ----------
+"ACOdyssey.exe"+3081271: 79 1C                    -  jns ACOdyssey.exe+308128F
+"ACOdyssey.exe"+3081273: 8B 15 BF 56 A9 02        -  mov edx,[ACOdyssey.exe+5B16938]
+"ACOdyssey.exe"+3081279: 45 33 C0                 -  xor r8d,r8d
+"ACOdyssey.exe"+308127C: 48 8B CF                 -  mov rcx,rdi
+"ACOdyssey.exe"+308127F: 40 84 ED                 -  test bpl,bpl
+"ACOdyssey.exe"+3081282: 75 06                    -  jne ACOdyssey.exe+308128A
+"ACOdyssey.exe"+3081284: 8B 15 FE 1B A3 02        -  mov edx,[ACOdyssey.exe+5AB2E88]
+"ACOdyssey.exe"+308128A: E8 51 68 99 FD           -  call ACOdyssey.exe+A17AE0
+"ACOdyssey.exe"+308128F: 48 8B 5C 24 30           -  mov rbx,[rsp+30]
+"ACOdyssey.exe"+3081294: 48 8B 6C 24 38           -  mov rbp,[rsp+38]
 }
 </AssemblerScript>
     </CheatEntry>
@@ -460,7 +542,9 @@ dealloc(newmem)
         <Element Offset="24" Vartype="Pointer" Bytesize="8" RLECount="3" DisplayMethod="Unsigned Integer"/>
         <Element Offset="48" Vartype="4 Bytes" Bytesize="4" RLECount="2" DisplayMethod="Unsigned Integer"/>
         <Element Offset="56" Vartype="Float" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
-        <Element Offset="68" Vartype="4 Bytes" Bytesize="4" RLECount="3" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="68" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="72" Vartype="Byte" Bytesize="1" DisplayMethod="Hexadecimal"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
         <Element Offset="80" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
         <Element Offset="84" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
         <Element Offset="88" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Hexadecimal"/>
