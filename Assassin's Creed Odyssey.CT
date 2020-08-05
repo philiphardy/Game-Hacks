@@ -2,98 +2,9 @@
 <CheatTable CheatEngineTableVersion="31">
   <CheatEntries>
     <CheatEntry>
-      <ID>5</ID>
-      <Description>"2-Hit Kill"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : ACOdyssey.exe
-  Version:
-  Date   : 2020-07-27
-  Author : phili
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT_2_HIT,ACOdyssey.exe,89 91 30 01 00 00 85 D2 79 45) // should be unique
-alloc(newmem,$1000,"ACOdyssey.exe"+22C73F6)
-
-label(code)
-label(kill)
-label(prereturn)
-label(return)
-
-newmem:
-
-code:
-  pushf
-  cmp edx,1
-  jle prereturn
-  push eax
-  mov eax,[rcx+134]
-  shr eax,1
-  cmp edx,eax
-  pop eax
-  jle kill
-  shr edx,1
-  mov [rcx+130],edx
-  jmp prereturn
-
-kill:
-  mov [rcx+130],1
-
-prereturn:
-  popf
-  jmp return
-
-INJECT_2_HIT:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT_2_HIT)
-
-[DISABLE]
-
-INJECT_2_HIT:
-  db 89 91 30 01 00 00
-
-unregistersymbol(INJECT_2_HIT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+22C73F6
-
-"ACOdyssey.exe"+22C73DD: CC                             -  int 3
-"ACOdyssey.exe"+22C73DE: CC                             -  int 3
-"ACOdyssey.exe"+22C73DF: CC                             -  int 3
-"ACOdyssey.exe"+22C73E0: 40 53                          -  push rbx
-"ACOdyssey.exe"+22C73E2: 48 83 EC 20                    -  sub rsp,20
-"ACOdyssey.exe"+22C73E6: 83 B9 30 01 00 00 00           -  cmp dword ptr [rcx+00000130],00
-"ACOdyssey.exe"+22C73ED: 48 8B D9                       -  mov rbx,rcx
-"ACOdyssey.exe"+22C73F0: 7D 04                          -  jnl ACOdyssey.exe+22C73F6
-"ACOdyssey.exe"+22C73F2: 85 D2                          -  test edx,edx
-"ACOdyssey.exe"+22C73F4: 78 4F                          -  js ACOdyssey.exe+22C7445
-// ---------- INJECTING HERE ----------
-"ACOdyssey.exe"+22C73F6: 89 91 30 01 00 00              -  mov [rcx+00000130],edx
-// ---------- DONE INJECTING  ----------
-"ACOdyssey.exe"+22C73FC: 85 D2                          -  test edx,edx
-"ACOdyssey.exe"+22C73FE: 79 45                          -  jns ACOdyssey.exe+22C7445
-"ACOdyssey.exe"+22C7400: 45 84 C0                       -  test r8l,r8l
-"ACOdyssey.exe"+22C7403: 75 40                          -  jne ACOdyssey.exe+22C7445
-"ACOdyssey.exe"+22C7405: 81 79 70 00 00 02 00           -  cmp [rcx+70],00020000
-"ACOdyssey.exe"+22C740C: 72 37                          -  jb ACOdyssey.exe+22C7445
-"ACOdyssey.exe"+22C740E: C6 81 55 01 00 00 01           -  mov byte ptr [rcx+00000155],01
-"ACOdyssey.exe"+22C7415: 45 33 C0                       -  xor r8d,r8d
-"ACOdyssey.exe"+22C7418: 8B 15 6A BA 7E 03              -  mov edx,[ACOdyssey.exe+5AB2E88]
-"ACOdyssey.exe"+22C741E: E8 BD 06 75 FE                 -  call ACOdyssey.exe+A17AE0
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
       <ID>45</ID>
       <Description>"Infinite Boat Boost"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : ACOdyssey.exe
   Version: 
@@ -173,7 +84,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>1</ID>
       <Description>"Infinite Health"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : ACOdyssey.exe
   Version: 
@@ -243,7 +154,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>47</ID>
       <Description>"Infinite Ship Health"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : ACOdyssey.exe
   Version: 
@@ -412,7 +323,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>55</ID>
       <Description>"Insta Kill (Assassin)"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : ACOdyssey.exe
   Version: 
@@ -484,7 +395,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>60</ID>
       <Description>"Insta Kill (Hunter)"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : ACOdyssey.exe
   Version: 
@@ -554,151 +465,9 @@ dealloc(newmem)
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>6</ID>
-      <Description>"Insta Kill (Old)"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : ACOdyssey.exe
-  Version: 
-  Date   : 2020-07-27
-  Author : phili
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT_INSTA_KILL,ACOdyssey.exe,89 91 30 01 00 00 85 D2 79 45) // should be unique
-alloc(newmem,$1000,"ACOdyssey.exe"+22C73F6)
-
-label(code)
-label(return)
-
-newmem:
-
-code:
-  mov [rcx+130],1
-  jmp return
-
-INJECT_INSTA_KILL:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT_INSTA_KILL)
-
-[DISABLE]
-
-INJECT_INSTA_KILL:
-  db 89 91 30 01 00 00
-
-unregistersymbol(INJECT_INSTA_KILL)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+22C73F6
-
-"ACOdyssey.exe"+22C73DD: CC                             -  int 3 
-"ACOdyssey.exe"+22C73DE: CC                             -  int 3 
-"ACOdyssey.exe"+22C73DF: CC                             -  int 3 
-"ACOdyssey.exe"+22C73E0: 40 53                          -  push rbx
-"ACOdyssey.exe"+22C73E2: 48 83 EC 20                    -  sub rsp,20
-"ACOdyssey.exe"+22C73E6: 83 B9 30 01 00 00 00           -  cmp dword ptr [rcx+00000130],00
-"ACOdyssey.exe"+22C73ED: 48 8B D9                       -  mov rbx,rcx
-"ACOdyssey.exe"+22C73F0: 7D 04                          -  jnl ACOdyssey.exe+22C73F6
-"ACOdyssey.exe"+22C73F2: 85 D2                          -  test edx,edx
-"ACOdyssey.exe"+22C73F4: 78 4F                          -  js ACOdyssey.exe+22C7445
-// ---------- INJECTING HERE ----------
-"ACOdyssey.exe"+22C73F6: 89 91 30 01 00 00              -  mov [rcx+00000130],edx
-// ---------- DONE INJECTING  ----------
-"ACOdyssey.exe"+22C73FC: 85 D2                          -  test edx,edx
-"ACOdyssey.exe"+22C73FE: 79 45                          -  jns ACOdyssey.exe+22C7445
-"ACOdyssey.exe"+22C7400: 45 84 C0                       -  test r8l,r8l
-"ACOdyssey.exe"+22C7403: 75 40                          -  jne ACOdyssey.exe+22C7445
-"ACOdyssey.exe"+22C7405: 81 79 70 00 00 02 00           -  cmp [rcx+70],00020000
-"ACOdyssey.exe"+22C740C: 72 37                          -  jb ACOdyssey.exe+22C7445
-"ACOdyssey.exe"+22C740E: C6 81 55 01 00 00 01           -  mov byte ptr [rcx+00000155],01
-"ACOdyssey.exe"+22C7415: 45 33 C0                       -  xor r8d,r8d
-"ACOdyssey.exe"+22C7418: 8B 15 6A BA 7E 03              -  mov edx,[ACOdyssey.exe+5AB2E88]
-"ACOdyssey.exe"+22C741E: E8 BD 06 75 FE                 -  call ACOdyssey.exe+A17AE0
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>51</ID>
-      <Description>"Insta Kill (Warrior 1)"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : ACOdyssey.exe
-  Version: 
-  Date   : 2020-08-03
-  Author : phili
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT_INSTA_KILL_DAMAGE,ACOdyssey.exe,89 46 38 F3 0F 10 75 60) // should be unique
-alloc(newmem,$1000,"ACOdyssey.exe"+287F1E8)
-
-label(code)
-label(return)
-
-newmem:
-
-code:
-  mov [rsi+38],98967F
-  movss xmm6,[rbp+60]
-  jmp return
-
-INJECT_INSTA_KILL_DAMAGE:
-  jmp newmem
-  nop 3
-return:
-registersymbol(INJECT_INSTA_KILL_DAMAGE)
-
-[DISABLE]
-
-INJECT_INSTA_KILL_DAMAGE:
-  db 89 46 38 F3 0F 10 75 60
-
-unregistersymbol(INJECT_INSTA_KILL_DAMAGE)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+287F1E8
-
-"ACOdyssey.exe"+287F1C8: 83 F0 01                 -  xor eax,01
-"ACOdyssey.exe"+287F1CB: 03 C8                    -  add ecx,eax
-"ACOdyssey.exe"+287F1CD: 66 0F 6E D1              -  movd xmm2,ecx
-"ACOdyssey.exe"+287F1D1: 0F 5B D2                 -  cvtdq2ps xmm2,xmm2
-"ACOdyssey.exe"+287F1D4: 8B 7E 18                 -  mov edi,[rsi+18]
-"ACOdyssey.exe"+287F1D7: 4D 8B C6                 -  mov r8,r14
-"ACOdyssey.exe"+287F1DA: 8B 5E 34                 -  mov ebx,[rsi+34]
-"ACOdyssey.exe"+287F1DD: 48 8B D5                 -  mov rdx,rbp
-"ACOdyssey.exe"+287F1E0: F3 48 0F 2C C2           -  cvttss2si rax,xmm2
-"ACOdyssey.exe"+287F1E5: 49 8B CF                 -  mov rcx,r15
-// ---------- INJECTING HERE ----------
-"ACOdyssey.exe"+287F1E8: 89 46 38                 -  mov [rsi+38],eax
-"ACOdyssey.exe"+287F1EB: F3 0F 10 75 60           -  movss xmm6,[rbp+60]
-// ---------- DONE INJECTING  ----------
-"ACOdyssey.exe"+287F1F0: E8 5B A5 02 00           -  call ACOdyssey.exe+28A9750
-"ACOdyssey.exe"+287F1F5: 8D 0C 3B                 -  lea ecx,[rbx+rdi]
-"ACOdyssey.exe"+287F1F8: 0F 57 C9                 -  xorps xmm1,xmm1
-"ACOdyssey.exe"+287F1FB: F3 0F 58 C7              -  addss xmm0,xmm7
-"ACOdyssey.exe"+287F1FF: F3 48 0F 2A C9           -  cvtsi2ss xmm1,rcx
-"ACOdyssey.exe"+287F204: F3 0F 59 C1              -  mulss xmm0,xmm1
-"ACOdyssey.exe"+287F208: F3 0F 59 C6              -  mulss xmm0,xmm6
-"ACOdyssey.exe"+287F20C: F3 0F 2C C8              -  cvttss2si ecx,xmm0
-"ACOdyssey.exe"+287F210: 81 F9 00 00 00 80        -  cmp ecx,80000000
-"ACOdyssey.exe"+287F216: 74 21                    -  je ACOdyssey.exe+287F239
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
       <ID>58</ID>
-      <Description>"Insta Kill (Warrior 2)"</Description>
-      <LastState/>
+      <Description>"Insta Kill (Warrior Weapon 1)"</Description>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : ACOdyssey.exe
   Version: 
@@ -764,6 +533,78 @@ dealloc(newmem)
 "ACOdyssey.exe"+287F371: 0F 14 C9           -  unpcklps xmm1,xmm1
 "ACOdyssey.exe"+287F374: 0F 50 C1           -  movmskps eax,xmm1
 "ACOdyssey.exe"+287F377: 83 E0 01           -  and eax,01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>51</ID>
+      <Description>"Insta Kill (Warrior Weapon 2)"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ACOdyssey.exe
+  Version: 
+  Date   : 2020-08-03
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INSTA_KILL_DAMAGE,ACOdyssey.exe,89 46 38 F3 0F 10 75 60) // should be unique
+alloc(newmem,$1000,"ACOdyssey.exe"+287F1E8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rsi+38],98967F
+  movss xmm6,[rbp+60]
+  jmp return
+
+INJECT_INSTA_KILL_DAMAGE:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT_INSTA_KILL_DAMAGE)
+
+[DISABLE]
+
+INJECT_INSTA_KILL_DAMAGE:
+  db 89 46 38 F3 0F 10 75 60
+
+unregistersymbol(INJECT_INSTA_KILL_DAMAGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+287F1E8
+
+"ACOdyssey.exe"+287F1C8: 83 F0 01                 -  xor eax,01
+"ACOdyssey.exe"+287F1CB: 03 C8                    -  add ecx,eax
+"ACOdyssey.exe"+287F1CD: 66 0F 6E D1              -  movd xmm2,ecx
+"ACOdyssey.exe"+287F1D1: 0F 5B D2                 -  cvtdq2ps xmm2,xmm2
+"ACOdyssey.exe"+287F1D4: 8B 7E 18                 -  mov edi,[rsi+18]
+"ACOdyssey.exe"+287F1D7: 4D 8B C6                 -  mov r8,r14
+"ACOdyssey.exe"+287F1DA: 8B 5E 34                 -  mov ebx,[rsi+34]
+"ACOdyssey.exe"+287F1DD: 48 8B D5                 -  mov rdx,rbp
+"ACOdyssey.exe"+287F1E0: F3 48 0F 2C C2           -  cvttss2si rax,xmm2
+"ACOdyssey.exe"+287F1E5: 49 8B CF                 -  mov rcx,r15
+// ---------- INJECTING HERE ----------
+"ACOdyssey.exe"+287F1E8: 89 46 38                 -  mov [rsi+38],eax
+"ACOdyssey.exe"+287F1EB: F3 0F 10 75 60           -  movss xmm6,[rbp+60]
+// ---------- DONE INJECTING  ----------
+"ACOdyssey.exe"+287F1F0: E8 5B A5 02 00           -  call ACOdyssey.exe+28A9750
+"ACOdyssey.exe"+287F1F5: 8D 0C 3B                 -  lea ecx,[rbx+rdi]
+"ACOdyssey.exe"+287F1F8: 0F 57 C9                 -  xorps xmm1,xmm1
+"ACOdyssey.exe"+287F1FB: F3 0F 58 C7              -  addss xmm0,xmm7
+"ACOdyssey.exe"+287F1FF: F3 48 0F 2A C9           -  cvtsi2ss xmm1,rcx
+"ACOdyssey.exe"+287F204: F3 0F 59 C1              -  mulss xmm0,xmm1
+"ACOdyssey.exe"+287F208: F3 0F 59 C6              -  mulss xmm0,xmm6
+"ACOdyssey.exe"+287F20C: F3 0F 2C C8              -  cvttss2si ecx,xmm0
+"ACOdyssey.exe"+287F210: 81 F9 00 00 00 80        -  cmp ecx,80000000
+"ACOdyssey.exe"+287F216: 74 21                    -  je ACOdyssey.exe+287F239
 }
 </AssemblerScript>
     </CheatEntry>
@@ -974,6 +815,165 @@ dealloc(newmem)
 "ACOdyssey.exe"+2605E80: 48 8B D6                 -  mov rdx,rsi
 "ACOdyssey.exe"+2605E83: FF 50 20                 -  call qword ptr [rax+20]
 "ACOdyssey.exe"+2605E86: 48 8B D6                 -  mov rdx,rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"zOld - 2-Hit Kill"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ACOdyssey.exe
+  Version:
+  Date   : 2020-07-27
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_2_HIT,ACOdyssey.exe,89 91 30 01 00 00 85 D2 79 45) // should be unique
+alloc(newmem,$1000,"ACOdyssey.exe"+22C73F6)
+
+label(code)
+label(kill)
+label(prereturn)
+label(return)
+
+newmem:
+
+code:
+  pushf
+  cmp edx,1
+  jle prereturn
+  push eax
+  mov eax,[rcx+134]
+  shr eax,1
+  cmp edx,eax
+  pop eax
+  jle kill
+  shr edx,1
+  mov [rcx+130],edx
+  jmp prereturn
+
+kill:
+  mov [rcx+130],1
+
+prereturn:
+  popf
+  jmp return
+
+INJECT_2_HIT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_2_HIT)
+
+[DISABLE]
+
+INJECT_2_HIT:
+  db 89 91 30 01 00 00
+
+unregistersymbol(INJECT_2_HIT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+22C73F6
+
+"ACOdyssey.exe"+22C73DD: CC                             -  int 3
+"ACOdyssey.exe"+22C73DE: CC                             -  int 3
+"ACOdyssey.exe"+22C73DF: CC                             -  int 3
+"ACOdyssey.exe"+22C73E0: 40 53                          -  push rbx
+"ACOdyssey.exe"+22C73E2: 48 83 EC 20                    -  sub rsp,20
+"ACOdyssey.exe"+22C73E6: 83 B9 30 01 00 00 00           -  cmp dword ptr [rcx+00000130],00
+"ACOdyssey.exe"+22C73ED: 48 8B D9                       -  mov rbx,rcx
+"ACOdyssey.exe"+22C73F0: 7D 04                          -  jnl ACOdyssey.exe+22C73F6
+"ACOdyssey.exe"+22C73F2: 85 D2                          -  test edx,edx
+"ACOdyssey.exe"+22C73F4: 78 4F                          -  js ACOdyssey.exe+22C7445
+// ---------- INJECTING HERE ----------
+"ACOdyssey.exe"+22C73F6: 89 91 30 01 00 00              -  mov [rcx+00000130],edx
+// ---------- DONE INJECTING  ----------
+"ACOdyssey.exe"+22C73FC: 85 D2                          -  test edx,edx
+"ACOdyssey.exe"+22C73FE: 79 45                          -  jns ACOdyssey.exe+22C7445
+"ACOdyssey.exe"+22C7400: 45 84 C0                       -  test r8l,r8l
+"ACOdyssey.exe"+22C7403: 75 40                          -  jne ACOdyssey.exe+22C7445
+"ACOdyssey.exe"+22C7405: 81 79 70 00 00 02 00           -  cmp [rcx+70],00020000
+"ACOdyssey.exe"+22C740C: 72 37                          -  jb ACOdyssey.exe+22C7445
+"ACOdyssey.exe"+22C740E: C6 81 55 01 00 00 01           -  mov byte ptr [rcx+00000155],01
+"ACOdyssey.exe"+22C7415: 45 33 C0                       -  xor r8d,r8d
+"ACOdyssey.exe"+22C7418: 8B 15 6A BA 7E 03              -  mov edx,[ACOdyssey.exe+5AB2E88]
+"ACOdyssey.exe"+22C741E: E8 BD 06 75 FE                 -  call ACOdyssey.exe+A17AE0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"zOld - Insta Kill"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ACOdyssey.exe
+  Version: 
+  Date   : 2020-07-27
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INSTA_KILL,ACOdyssey.exe,89 91 30 01 00 00 85 D2 79 45) // should be unique
+alloc(newmem,$1000,"ACOdyssey.exe"+22C73F6)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rcx+130],1
+  jmp return
+
+INJECT_INSTA_KILL:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_INSTA_KILL)
+
+[DISABLE]
+
+INJECT_INSTA_KILL:
+  db 89 91 30 01 00 00
+
+unregistersymbol(INJECT_INSTA_KILL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+22C73F6
+
+"ACOdyssey.exe"+22C73DD: CC                             -  int 3 
+"ACOdyssey.exe"+22C73DE: CC                             -  int 3 
+"ACOdyssey.exe"+22C73DF: CC                             -  int 3 
+"ACOdyssey.exe"+22C73E0: 40 53                          -  push rbx
+"ACOdyssey.exe"+22C73E2: 48 83 EC 20                    -  sub rsp,20
+"ACOdyssey.exe"+22C73E6: 83 B9 30 01 00 00 00           -  cmp dword ptr [rcx+00000130],00
+"ACOdyssey.exe"+22C73ED: 48 8B D9                       -  mov rbx,rcx
+"ACOdyssey.exe"+22C73F0: 7D 04                          -  jnl ACOdyssey.exe+22C73F6
+"ACOdyssey.exe"+22C73F2: 85 D2                          -  test edx,edx
+"ACOdyssey.exe"+22C73F4: 78 4F                          -  js ACOdyssey.exe+22C7445
+// ---------- INJECTING HERE ----------
+"ACOdyssey.exe"+22C73F6: 89 91 30 01 00 00              -  mov [rcx+00000130],edx
+// ---------- DONE INJECTING  ----------
+"ACOdyssey.exe"+22C73FC: 85 D2                          -  test edx,edx
+"ACOdyssey.exe"+22C73FE: 79 45                          -  jns ACOdyssey.exe+22C7445
+"ACOdyssey.exe"+22C7400: 45 84 C0                       -  test r8l,r8l
+"ACOdyssey.exe"+22C7403: 75 40                          -  jne ACOdyssey.exe+22C7445
+"ACOdyssey.exe"+22C7405: 81 79 70 00 00 02 00           -  cmp [rcx+70],00020000
+"ACOdyssey.exe"+22C740C: 72 37                          -  jb ACOdyssey.exe+22C7445
+"ACOdyssey.exe"+22C740E: C6 81 55 01 00 00 01           -  mov byte ptr [rcx+00000155],01
+"ACOdyssey.exe"+22C7415: 45 33 C0                       -  xor r8d,r8d
+"ACOdyssey.exe"+22C7418: 8B 15 6A BA 7E 03              -  mov edx,[ACOdyssey.exe+5AB2E88]
+"ACOdyssey.exe"+22C741E: E8 BD 06 75 FE                 -  call ACOdyssey.exe+A17AE0
 }
 </AssemblerScript>
     </CheatEntry>
