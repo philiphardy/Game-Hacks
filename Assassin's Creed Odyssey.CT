@@ -2,6 +2,150 @@
 <CheatTable CheatEngineTableVersion="31">
   <CheatEntries>
     <CheatEntry>
+      <ID>70</ID>
+      <Description>"Infinite Ability Points (1/2)"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ACOdyssey.exe
+  Version: 
+  Date   : 2020-08-09
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_ABILITY_PTS,ACOdyssey.exe,41 01 45 14 41 B9 73 CB FC 9F) // should be unique
+alloc(newmem,$1000,"ACOdyssey.exe"+23EA665)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [r13+14],A
+  mov r9d,9FFCCB73
+  jmp return
+
+INJECT_INF_ABILITY_PTS:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT_INF_ABILITY_PTS)
+
+[DISABLE]
+
+INJECT_INF_ABILITY_PTS:
+  db 41 01 45 14 41 B9 73 CB FC 9F
+
+unregistersymbol(INJECT_INF_ABILITY_PTS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+23EA665
+
+"ACOdyssey.exe"+23EA63C: 84 C0                    -  test al,al
+"ACOdyssey.exe"+23EA63E: 74 1A                    -  je ACOdyssey.exe+23EA65A
+"ACOdyssey.exe"+23EA640: 48 8B 0D B9 97 6C 03     -  mov rcx,[ACOdyssey.exe+5AB3E00]
+"ACOdyssey.exe"+23EA647: E8 B4 78 4B 00           -  call ACOdyssey.exe+28A1F00
+"ACOdyssey.exe"+23EA64C: 4C 8B C0                 -  mov r8,rax
+"ACOdyssey.exe"+23EA64F: 49 8B D7                 -  mov rdx,r15
+"ACOdyssey.exe"+23EA652: 49 8B CE                 -  mov rcx,r14
+"ACOdyssey.exe"+23EA655: E8 A6 40 05 00           -  call ACOdyssey.exe+243E700
+"ACOdyssey.exe"+23EA65A: 41 8B 47 18              -  mov eax,[r15+18]
+"ACOdyssey.exe"+23EA65E: 48 8D 0D B3 99 28 03     -  lea rcx,[ACOdyssey.exe+5674018]
+// ---------- INJECTING HERE ----------
+"ACOdyssey.exe"+23EA665: 41 01 45 14              -  add [r13+14],eax
+"ACOdyssey.exe"+23EA669: 41 B9 73 CB FC 9F        -  mov r9d,9FFCCB73
+// ---------- DONE INJECTING  ----------
+"ACOdyssey.exe"+23EA66F: 4D 8B C6                 -  mov r8,r14
+"ACOdyssey.exe"+23EA672: 33 D2                    -  xor edx,edx
+"ACOdyssey.exe"+23EA674: E8 F7 9E 61 FE           -  call ACOdyssey.exe+A04570
+"ACOdyssey.exe"+23EA679: 48 8B 8C 24 A0 00 00 00  -  mov rcx,[rsp+000000A0]
+"ACOdyssey.exe"+23EA681: 48 8D 94 24 98 00 00 00  -  lea rdx,[rsp+00000098]
+"ACOdyssey.exe"+23EA689: 48 81 C1 E0 05 00 00     -  add rcx,000005E0
+"ACOdyssey.exe"+23EA690: 48 89 84 24 98 00 00 00  -  mov [rsp+00000098],rax
+"ACOdyssey.exe"+23EA698: 45 33 C0                 -  xor r8d,r8d
+"ACOdyssey.exe"+23EA69B: 48 8B D8                 -  mov rbx,rax
+"ACOdyssey.exe"+23EA69E: E8 AD 3B 26 00           -  call ACOdyssey.exe+264E250
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>72</ID>
+      <Description>"Infinite Ability Points (2/2)"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ACOdyssey.exe
+  Version: 
+  Date   : 2020-08-09
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_ABILITY_PTS_2,ACOdyssey.exe,89 45 14 4C 8B C6) // should be unique
+alloc(newmem,$1000,"ACOdyssey.exe"+23ED31F)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbp+14],A
+  mov r8,rsi
+  jmp return
+
+INJECT_INF_ABILITY_PTS_2:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_INF_ABILITY_PTS_2)
+
+[DISABLE]
+
+INJECT_INF_ABILITY_PTS_2:
+  db 89 45 14 4C 8B C6
+
+unregistersymbol(INJECT_INF_ABILITY_PTS_2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "ACOdyssey.exe"+23ED31F
+
+"ACOdyssey.exe"+23ED2FF: 57                       -  push rdi
+"ACOdyssey.exe"+23ED300: 48 83 EC 20              -  sub rsp,20
+"ACOdyssey.exe"+23ED304: 48 8D 5A 10              -  lea rbx,[rdx+10]
+"ACOdyssey.exe"+23ED308: 49 8B F0                 -  mov rsi,r8
+"ACOdyssey.exe"+23ED30B: 48 8B D3                 -  mov rdx,rbx
+"ACOdyssey.exe"+23ED30E: 4D 8B C1                 -  mov r8,r9
+"ACOdyssey.exe"+23ED311: 49 8B F9                 -  mov rdi,r9
+"ACOdyssey.exe"+23ED314: 48 8B E9                 -  mov rbp,rcx
+"ACOdyssey.exe"+23ED317: E8 64 37 00 00           -  call ACOdyssey.exe+23F0A80
+"ACOdyssey.exe"+23ED31C: 4C 8B CF                 -  mov r9,rdi
+// ---------- INJECTING HERE ----------
+"ACOdyssey.exe"+23ED31F: 89 45 14                 -  mov [rbp+14],eax
+"ACOdyssey.exe"+23ED322: 4C 8B C6                 -  mov r8,rsi
+// ---------- DONE INJECTING  ----------
+"ACOdyssey.exe"+23ED325: 48 8B D3                 -  mov rdx,rbx
+"ACOdyssey.exe"+23ED328: 48 8B CD                 -  mov rcx,rbp
+"ACOdyssey.exe"+23ED32B: E8 A0 06 00 00           -  call ACOdyssey.exe+23ED9D0
+"ACOdyssey.exe"+23ED330: E8 9B B9 A1 00           -  call ACOdyssey.exe+2E08CD0
+"ACOdyssey.exe"+23ED335: 84 C0                    -  test al,al
+"ACOdyssey.exe"+23ED337: 75 2F                    -  jne ACOdyssey.exe+23ED368
+"ACOdyssey.exe"+23ED339: 44 8B 45 14              -  mov r8d,[rbp+14]
+"ACOdyssey.exe"+23ED33D: 45 85 C0                 -  test r8d,r8d
+"ACOdyssey.exe"+23ED340: 74 26                    -  je ACOdyssey.exe+23ED368
+"ACOdyssey.exe"+23ED342: 48 8B 0D F7 88 6C 03     -  mov rcx,[ACOdyssey.exe+5AB5C40]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
       <ID>45</ID>
       <Description>"Infinite Boat Boost"</Description>
       <LastState Activated="1"/>
