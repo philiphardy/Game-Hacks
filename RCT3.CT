@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Infinite Money"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : RCT3.exe
+  Version: 
+  Date   : 2020-10-05
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_MONEY,RCT3.exe,29 5F 58 8B 8F B4 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [edi+58],5F5E0FF
+  mov ecx,[edi+000000B4]
+  jmp return
+
+INJECT_MONEY:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT_MONEY)
+
+[DISABLE]
+
+INJECT_MONEY:
+  db 29 5F 58 8B 8F B4 00 00 00
+
+unregistersymbol(INJECT_MONEY)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "RCT3.exe"+2F77CA
+
+"RCT3.exe"+2F77A8: 8B 87 18 01 00 00     -  mov eax,[edi+00000118]
+"RCT3.exe"+2F77AE: 0F 45 F1              -  cmovne esi,ecx
+"RCT3.exe"+2F77B1: 41                    -  inc ecx
+"RCT3.exe"+2F77B2: 83 C2 18              -  add edx,18
+"RCT3.exe"+2F77B5: 89 4D F0              -  mov [ebp-10],ecx
+"RCT3.exe"+2F77B8: 89 55 EC              -  mov [ebp-14],edx
+"RCT3.exe"+2F77BB: 3B 48 70              -  cmp ecx,[eax+70]
+"RCT3.exe"+2F77BE: 0F 8C 4C FF FF FF     -  jl RCT3.exe+2F7710
+"RCT3.exe"+2F77C4: 8B 5D 08              -  mov ebx,[ebp+08]
+"RCT3.exe"+2F77C7: 89 75 10              -  mov [ebp+10],esi
+// ---------- INJECTING HERE ----------
+"RCT3.exe"+2F77CA: 29 5F 58              -  sub [edi+58],ebx
+"RCT3.exe"+2F77CD: 8B 8F B4 00 00 00     -  mov ecx,[edi+000000B4]
+// ---------- DONE INJECTING  ----------
+"RCT3.exe"+2F77D3: 8B 87 B0 00 00 00     -  mov eax,[edi+000000B0]
+"RCT3.exe"+2F77D9: 66 0F 6E CB           -  movd xmm1,ebx
+"RCT3.exe"+2F77DD: F3 0F 10 04 88        -  movss xmm0,[eax+ecx*4]
+"RCT3.exe"+2F77E2: 0F 5B C9              -  cvtdq2ps xmm1,xmm1
+"RCT3.exe"+2F77E5: F3 0F 5C C1           -  subss xmm0,xmm1
+"RCT3.exe"+2F77E9: F3 0F 11 04 88        -  movss [eax+ecx*4],xmm0
+"RCT3.exe"+2F77EE: 85 DB                 -  test ebx,ebx
+"RCT3.exe"+2F77F0: 79 1C                 -  jns RCT3.exe+2F780E
+"RCT3.exe"+2F77F2: 8B 8F F0 00 00 00     -  mov ecx,[edi+000000F0]
+"RCT3.exe"+2F77F8: 8B 87 EC 00 00 00     -  mov eax,[edi+000000EC]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

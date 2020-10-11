@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Infinite Units (Disable Spending)"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : NMS.exe
+  Version: 
+  Date   : 2020-10-10
+  Author : drp
+
+  This script disables spending money.
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_MONEY_1,NMS.exe,2B F8 89 B9 BC 01 00 00) // should be unique
+alloc(newmem,$1000,"NMS.exe"+6B8A4C)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  pushf
+  push eax
+  mov eax,[rcx+000001BC]
+  cmp eax,3B9AC9FF
+  jge prereturn
+  mov [rcx+000001BC],3B9AC9FF
+
+prereturn:
+  pop eax
+  popf
+  jmp return
+
+INJECT_INF_MONEY_1+02:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_INF_MONEY_1)
+
+[DISABLE]
+
+INJECT_INF_MONEY_1+02:
+  db 89 B9 BC 01 00 00
+
+unregistersymbol(INJECT_INF_MONEY_1)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "NMS.exe"+6B8A4C
+
+"NMS.exe"+6B8A2F: C3                       -  ret 
+"NMS.exe"+6B8A30: 48 89 5C 24 08           -  mov [rsp+08],rbx
+"NMS.exe"+6B8A35: 57                       -  push rdi
+"NMS.exe"+6B8A36: 48 83 EC 40              -  sub rsp,40
+"NMS.exe"+6B8A3A: 8B B9 BC 01 00 00        -  mov edi,[rcx+000001BC]
+"NMS.exe"+6B8A40: 48 8B D9                 -  mov rbx,rcx
+"NMS.exe"+6B8A43: 3B D7                    -  cmp edx,edi
+"NMS.exe"+6B8A45: 8B C7                    -  mov eax,edi
+"NMS.exe"+6B8A47: 0F 42 C2                 -  cmovb eax,edx
+"NMS.exe"+6B8A4A: 2B F8                    -  sub edi,eax
+// ---------- INJECTING HERE ----------
+"NMS.exe"+6B8A4C: 89 B9 BC 01 00 00        -  mov [rcx+000001BC],edi
+// ---------- DONE INJECTING  ----------
+"NMS.exe"+6B8A52: 48 8D 0D 57 74 5D 02     -  lea rcx,[NMS.exe+2C8FEB0]
+"NMS.exe"+6B8A59: E8 B2 9B C3 FF           -  call NMS.exe+2F2610
+"NMS.exe"+6B8A5E: 4C 8B D0                 -  mov r10,rax
+"NMS.exe"+6B8A61: 4C 8D 05 B0 97 BE 01     -  lea r8,[NMS.exe+22A2218]
+"NMS.exe"+6B8A68: 33 C0                    -  xor eax,eax
+"NMS.exe"+6B8A6A: 33 D2                    -  xor edx,edx
+"NMS.exe"+6B8A6C: 48 89 44 24 30           -  mov [rsp+30],rax
+"NMS.exe"+6B8A71: 33 FF                    -  xor edi,edi
+"NMS.exe"+6B8A73: 48 89 44 24 38           -  mov [rsp+38],rax
+"NMS.exe"+6B8A78: 0F 1F 84 00 00 00 00 00  -  nop dword ptr [rax+rax+00000000]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Infinite Mining Tool Charge"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : NMS.exe
+  Version: 
+  Date   : 2020-10-10
+  Author : drp
+
+  This script gives the mining tool infinite charge.
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_MINING_TOOL_CHARGE,NMS.exe,66 0F 6E 4E 18 66) // should be unique
+alloc(newmem,$1000,"NMS.exe"+1691815)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movd xmm1,[rsi+1C]
+  movd [rsi+18],xmm1
+  jmp return
+
+INJECT_INF_MINING_TOOL_CHARGE:
+  jmp newmem
+return:
+registersymbol(INJECT_INF_MINING_TOOL_CHARGE)
+
+[DISABLE]
+
+INJECT_INF_MINING_TOOL_CHARGE:
+  db 66 0F 6E 4E 18
+
+unregistersymbol(INJECT_INF_MINING_TOOL_CHARGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "NMS.exe"+1691815
+
+"NMS.exe"+16917F3: 44 2B E3                 -  sub r12d,ebx
+"NMS.exe"+16917F6: 33 C0                    -  xor eax,eax
+"NMS.exe"+16917F8: 49 63 CC                 -  movsxd  rcx,r12d
+"NMS.exe"+16917FB: F3 AA                    - repe  stosb 
+"NMS.exe"+16917FD: 0F 28 45 F0              -  movaps xmm0,[rbp-10]
+"NMS.exe"+1691801: 48 8D 55 F0              -  lea rdx,[rbp-10]
+"NMS.exe"+1691805: 41 B0 01                 -  mov r8l,01
+"NMS.exe"+1691808: 66 0F 7F 45 F0           -  movdqa [rbp-10],xmm0
+"NMS.exe"+169180D: 49 8B CE                 -  mov rcx,r14
+"NMS.exe"+1691810: E8 7B A9 C7 FE           -  call NMS.exe+30C190
+// ---------- INJECTING HERE ----------
+"NMS.exe"+1691815: 66 0F 6E 4E 18           -  movd xmm1,[rsi+18]
+// ---------- DONE INJECTING  ----------
+"NMS.exe"+169181A: 66 0F 6E 46 1C           -  movd xmm0,[rsi+1C]
+"NMS.exe"+169181F: 0F 5B C9                 -  cvtdq2ps xmm1,xmm1
+"NMS.exe"+1691822: 48 8B 40 50              -  mov rax,[rax+50]
+"NMS.exe"+1691826: 0F 5B C0                 -  cvtdq2ps xmm0,xmm0
+"NMS.exe"+1691829: F3 0F 5E C8              -  divss xmm1,xmm0
+"NMS.exe"+169182D: F3 0F 59 0D 4B DF B8 00  -  mulss xmm1,[NMS.exe+221F780]
+"NMS.exe"+1691835: F3 0F 11 48 30           -  movss [rax+30],xmm1
+"NMS.exe"+169183A: 49 8D 4F 20              -  lea rcx,[r15+20]
+"NMS.exe"+169183E: E8 8D 08 53 FF           -  call NMS.exe+BC20D0
+"NMS.exe"+1691843: 33 D2                    -  xor edx,edx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
