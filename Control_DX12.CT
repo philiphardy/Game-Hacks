@@ -74,7 +74,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>8</ID>
       <Description>"Infinite Health"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Control_DX12.exe
   Version: 
@@ -145,6 +145,74 @@ dealloc(newmem)
 "Control_DX12.exe"+322929: 0F 2F A3 80 00 00 00     -  comiss xmm4,[rbx+00000080]
 "Control_DX12.exe"+322930: F3 0F 58 6B 7C           -  addss xmm5,[rbx+7C]
 "Control_DX12.exe"+322935: 0F 28 C5                 -  movaps xmm0,xmm5
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Infinite Energy"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Control_DX12.exe
+  Version: 
+  Date   : 2020-10-31
+  Author : DrP
+
+  This script gives infinite energy.
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_ENERGY,Control_DX12.exe,F3 0F 11 41 40 48) // should be unique
+alloc(newmem,$1000,"Control_DX12.exe"+F1765)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  jmp return
+
+INJECT_INF_ENERGY:
+  jmp newmem
+return:
+registersymbol(INJECT_INF_ENERGY)
+
+[DISABLE]
+
+INJECT_INF_ENERGY:
+  db F3 0F 11 41 40
+
+unregistersymbol(INJECT_INF_ENERGY)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Control_DX12.exe"+F1765
+
+"Control_DX12.exe"+F173B: 0F 28 C4                 -  movaps xmm0,xmm4
+"Control_DX12.exe"+F173E: 48 89 5C 24 40           -  mov [rsp+40],rbx
+"Control_DX12.exe"+F1743: F3 0F 58 C1              -  addss xmm0,xmm1
+"Control_DX12.exe"+F1747: 0F 29 74 24 20           -  movaps [rsp+20],xmm6
+"Control_DX12.exe"+F174C: F3 0F 10 B1 28 01 00 00  -  movss xmm6,[rcx+00000128]
+"Control_DX12.exe"+F1754: 0F 2E E0                 -  ucomiss xmm4,xmm0
+"Control_DX12.exe"+F1757: 7A 02                    -  jp Control_DX12.exe+F175B
+"Control_DX12.exe"+F1759: 74 25                    -  je Control_DX12.exe+F1780
+"Control_DX12.exe"+F175B: 48 8B 05 4E D8 CA 00     -  mov rax,[Control_DX12.exe+D9EFB0]
+"Control_DX12.exe"+F1762: 0F 28 E0                 -  movaps xmm4,xmm0
+// ---------- INJECTING HERE ----------
+"Control_DX12.exe"+F1765: F3 0F 11 41 40           -  movss [rcx+40],xmm0
+// ---------- DONE INJECTING  ----------
+"Control_DX12.exe"+F176A: 48 8B 08                 -  mov rcx,[rax]
+"Control_DX12.exe"+F176D: 48 85 C9                 -  test rcx,rcx
+"Control_DX12.exe"+F1770: 74 0E                    -  je Control_DX12.exe+F1780
+"Control_DX12.exe"+F1772: 48 8D 57 40              -  lea rdx,[rdi+40]
+"Control_DX12.exe"+F1776: E8 B5 8E F7 FF           -  call Control_DX12.exe+6A630
+"Control_DX12.exe"+F177B: F3 0F 10 67 40           -  movss xmm4,[rdi+40]
+"Control_DX12.exe"+F1780: F3 0F 10 1D 90 45 E2 00  -  movss xmm3,[Control_DX12.exe+F15D18]
+"Control_DX12.exe"+F1788: 0F 28 C6                 -  movaps xmm0,xmm6
+"Control_DX12.exe"+F178B: 48 8B 47 38              -  mov rax,[rdi+38]
+"Control_DX12.exe"+F178F: 0F 28 D0                 -  movaps xmm2,xmm0
 }
 </AssemblerScript>
     </CheatEntry>
