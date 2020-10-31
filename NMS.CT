@@ -150,6 +150,76 @@ dealloc(newmem)
 }
 </AssemblerScript>
     </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Infinite Mining Gun"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : NMS.exe
+  Version: 
+  Date   : 2020-10-14
+  Author : phili
+
+  This script gives infinite ammo to the mining gun.
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_INF_MINING_GUN,NMS.exe,89 84 B3 50 14 00 00) // should be unique
+alloc(newmem,$1000,"NMS.exe"+165FAEE)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+rsi*4+00001450],64
+  jmp return
+
+INJECT_INF_MINING_GUN:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT_INF_MINING_GUN)
+
+[DISABLE]
+
+INJECT_INF_MINING_GUN:
+  db 89 84 B3 50 14 00 00
+
+unregistersymbol(INJECT_INF_MINING_GUN)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "NMS.exe"+165FAEE
+
+"NMS.exe"+165FABB: F3 0F 7F 4D 90           -  movdqu [rbp-70],xmm1
+"NMS.exe"+165FAC0: 66 0F 6F 05 08 D9 BC 00  -  movdqa xmm0,[NMS.exe+222D3D0]
+"NMS.exe"+165FAC8: F3 0F 7F 45 A0           -  movdqu [rbp-60],xmm0
+"NMS.exe"+165FACD: C7 45 B0 1D 00 00 00     -  mov [rbp-50],0000001D
+"NMS.exe"+165FAD4: 4C 8D 4D 00              -  lea r9,[rbp+00]
+"NMS.exe"+165FAD8: 44 8B 44 B5 80           -  mov r8d,[rbp+rsi*4--80]
+"NMS.exe"+165FADD: 49 8B D4                 -  mov rdx,r12
+"NMS.exe"+165FAE0: E8 5B C9 03 FF           -  call NMS.exe+69C440
+"NMS.exe"+165FAE5: 8B 84 B3 50 14 00 00     -  mov eax,[rbx+rsi*4+00001450]
+"NMS.exe"+165FAEC: 2B C7                    -  sub eax,edi
+// ---------- INJECTING HERE ----------
+"NMS.exe"+165FAEE: 89 84 B3 50 14 00 00     -  mov [rbx+rsi*4+00001450],eax
+// ---------- DONE INJECTING  ----------
+"NMS.exe"+165FAF5: 85 C0                    -  test eax,eax
+"NMS.exe"+165FAF7: 0F 8F 24 06 00 00        -  jg NMS.exe+1660121
+"NMS.exe"+165FAFD: 48 8B 03                 -  mov rax,[rbx]
+"NMS.exe"+165FB00: 8B D6                    -  mov edx,esi
+"NMS.exe"+165FB02: 48 8B CB                 -  mov rcx,rbx
+"NMS.exe"+165FB05: FF 50 58                 -  call qword ptr [rax+58]
+"NMS.exe"+165FB08: 48 8B F8                 -  mov rdi,rax
+"NMS.exe"+165FB0B: 48 85 C0                 -  test rax,rax
+"NMS.exe"+165FB0E: 0F 84 62 03 00 00        -  je NMS.exe+165FE76
+"NMS.exe"+165FB14: 48 8D 0D 95 03 63 01     -  lea rcx,[NMS.exe+2C8FEB0]
+}
+</AssemblerScript>
+    </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
 </CheatTable>
