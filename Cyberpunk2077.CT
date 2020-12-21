@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>8</ID>
       <Description>"Infinite Clip"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Cyberpunk2077.exe
   Version:
@@ -160,7 +160,7 @@ Cyberpunk2077.exe+17CFC8F: CC              - int 3
     <CheatEntry>
       <ID>15</ID>
       <Description>"Infinite Grenades"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Cyberpunk2077.exe
   Version: 
@@ -229,7 +229,7 @@ Cyberpunk2077.exe+17A7940: E8 8B C3 FF FF     - call Cyberpunk2077.exe+17A3CD0
     <CheatEntry>
       <ID>32</ID>
       <Description>"Infinite Stamina + Health"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Cyberpunk2077.exe
   Version:
@@ -305,6 +305,75 @@ Cyberpunk2077.exe+192F87F: C6 82 9D 01 00 00 00           - mov byte ptr [rdx+00
 Cyberpunk2077.exe+192F886: C3                             - ret
 Cyberpunk2077.exe+192F887: CC                             - int 3
 Cyberpunk2077.exe+192F888: CC                             - int 3
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"Infinite Abilities"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Cyberpunk2077.exe
+  Version: 
+  Date   : 2020-12-21
+  Author : phili
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_ABILITIES,Cyberpunk2077.exe,2B 44 24 50 89 03 48 85 F6) // should be unique
+alloc(newmem,$1000,INJECT_ABILITIES)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  jmp return
+
+INJECT_ABILITIES:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_ABILITIES)
+
+[DISABLE]
+
+INJECT_ABILITIES:
+  db 2B 44 24 50 89 03 48 85 F6
+
+unregistersymbol(INJECT_ABILITIES)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+23B478
+
+Cyberpunk2077.exe+23B459: 4C 89 77 38     - mov [rdi+38],r14
+Cyberpunk2077.exe+23B45D: 48 8B D7        - mov rdx,rdi
+Cyberpunk2077.exe+23B460: 0F B6 08        - movzx ecx,byte ptr [rax]
+Cyberpunk2077.exe+23B463: 48 FF C0        - inc rax
+Cyberpunk2077.exe+23B466: 48 89 07        - mov [rdi],rax
+Cyberpunk2077.exe+23B469: 8B C1           - mov eax,ecx
+Cyberpunk2077.exe+23B46B: 48 8B 4F 40     - mov rcx,[rdi+40]
+Cyberpunk2077.exe+23B46F: FF 54 C5 00     - call qword ptr [rbp+rax*8+00]
+Cyberpunk2077.exe+23B473: 48 FF 07        - inc [rdi]
+Cyberpunk2077.exe+23B476: 8B 03           - mov eax,[rbx]
+// ---------- INJECTING HERE ----------
+Cyberpunk2077.exe+23B478: 2B 44 24 50     - sub eax,[rsp+50]
+// ---------- DONE INJECTING  ----------
+Cyberpunk2077.exe+23B47C: 89 03           - mov [rbx],eax
+Cyberpunk2077.exe+23B47E: 48 85 F6        - test rsi,rsi
+Cyberpunk2077.exe+23B481: 74 02           - je Cyberpunk2077.exe+23B485
+Cyberpunk2077.exe+23B483: 89 06           - mov [rsi],eax
+Cyberpunk2077.exe+23B485: 48 8B 5C 24 40  - mov rbx,[rsp+40]
+Cyberpunk2077.exe+23B48A: 48 8B 6C 24 58  - mov rbp,[rsp+58]
+Cyberpunk2077.exe+23B48F: 48 83 C4 20     - add rsp,20
+Cyberpunk2077.exe+23B493: 41 5E           - pop r14
+Cyberpunk2077.exe+23B495: 5F              - pop rdi
+Cyberpunk2077.exe+23B496: 5E              - pop rsi
 }
 </AssemblerScript>
     </CheatEntry>
