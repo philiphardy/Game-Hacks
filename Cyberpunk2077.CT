@@ -85,7 +85,7 @@ Cyberpunk2077.exe+23B495: 5F              - pop rdi
     <CheatEntry>
       <ID>12</ID>
       <Description>"Infinite Ammo"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Cyberpunk2077.exe
   Version: 
@@ -132,38 +132,38 @@ unregistersymbol(INJECT_AMMO)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+17CFC80
+// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+17A8500
 
-Cyberpunk2077.exe+17CFC60: BA 01 00 00 00  - mov edx,00000001
-Cyberpunk2077.exe+17CFC65: F3 48 0F 2C C0  - cvttss2si rax,xmm0
-Cyberpunk2077.exe+17CFC6A: 3B C2           - cmp eax,edx
-Cyberpunk2077.exe+17CFC6C: 0F 43 D0        - cmovae edx,eax
-Cyberpunk2077.exe+17CFC6F: 33 C0           - xor eax,eax
-Cyberpunk2077.exe+17CFC71: 03 CB           - add ecx,ebx
-Cyberpunk2077.exe+17CFC73: 48 8B 5C 24 30  - mov rbx,[rsp+30]
-Cyberpunk2077.exe+17CFC78: 0F 49 C1        - cmovns eax,ecx
-Cyberpunk2077.exe+17CFC7B: 3B C2           - cmp eax,edx
-Cyberpunk2077.exe+17CFC7D: 0F 4E D0        - cmovle edx,eax
+Cyberpunk2077.exe+17A84E0: BA 01 00 00 00  - mov edx,00000001
+Cyberpunk2077.exe+17A84E5: F3 48 0F 2C C0  - cvttss2si rax,xmm0
+Cyberpunk2077.exe+17A84EA: 3B C2           - cmp eax,edx
+Cyberpunk2077.exe+17A84EC: 0F 43 D0        - cmovae edx,eax
+Cyberpunk2077.exe+17A84EF: 33 C0           - xor eax,eax
+Cyberpunk2077.exe+17A84F1: 03 CB           - add ecx,ebx
+Cyberpunk2077.exe+17A84F3: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+Cyberpunk2077.exe+17A84F8: 0F 49 C1        - cmovns eax,ecx
+Cyberpunk2077.exe+17A84FB: 3B C2           - cmp eax,edx
+Cyberpunk2077.exe+17A84FD: 0F 4E D0        - cmovle edx,eax
 // ---------- INJECTING HERE ----------
-Cyberpunk2077.exe+17CFC80: 89 57 78        - mov [rdi+78],edx
+Cyberpunk2077.exe+17A8500: 89 57 78        - mov [rdi+78],edx
 // ---------- DONE INJECTING  ----------
-Cyberpunk2077.exe+17CFC83: 48 83 C4 20     - add rsp,20
-Cyberpunk2077.exe+17CFC87: 5F              - pop rdi
-Cyberpunk2077.exe+17CFC88: C3              - ret 
-Cyberpunk2077.exe+17CFC89: CC              - int 3 
-Cyberpunk2077.exe+17CFC8A: CC              - int 3 
-Cyberpunk2077.exe+17CFC8B: CC              - int 3 
-Cyberpunk2077.exe+17CFC8C: CC              - int 3 
-Cyberpunk2077.exe+17CFC8D: CC              - int 3 
-Cyberpunk2077.exe+17CFC8E: CC              - int 3 
-Cyberpunk2077.exe+17CFC8F: CC              - int 3 
+Cyberpunk2077.exe+17A8503: 48 83 C4 20     - add rsp,20
+Cyberpunk2077.exe+17A8507: 5F              - pop rdi
+Cyberpunk2077.exe+17A8508: C3              - ret
+Cyberpunk2077.exe+17A8509: CC              - int 3
+Cyberpunk2077.exe+17A850A: CC              - int 3
+Cyberpunk2077.exe+17A850B: CC              - int 3
+Cyberpunk2077.exe+17A850C: CC              - int 3
+Cyberpunk2077.exe+17A850D: CC              - int 3
+Cyberpunk2077.exe+17A850E: CC              - int 3
+Cyberpunk2077.exe+17A850F: CC              - int 3
 }
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
       <ID>8</ID>
       <Description>"Infinite Clip"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Cyberpunk2077.exe
   Version:
@@ -210,38 +210,38 @@ unregistersymbol(INJECT_CLIP)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+1A7E417
+// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+1A55BF7
 
-Cyberpunk2077.exe+1A7E3E7: 48 8D 8E 28 03 00 00  - lea rcx,[rsi+00000328]
-Cyberpunk2077.exe+1A7E3EE: E8 9D F1 FF 00        - call Cyberpunk2077.exe+2A7D590
-Cyberpunk2077.exe+1A7E3F3: 0F B7 8E 40 03 00 00  - movzx ecx,word ptr [rsi+00000340]
-Cyberpunk2077.exe+1A7E3FA: 66 3B CF              - cmp cx,di
-Cyberpunk2077.exe+1A7E3FD: 66 0F 46 F9           - cmovbe di,cx
-Cyberpunk2077.exe+1A7E401: 66 2B CF              - sub cx,di
-Cyberpunk2077.exe+1A7E404: 44 0F B7 E1           - movzx r12d,cx
-Cyberpunk2077.exe+1A7E408: 48 8B 8E 98 03 00 00  - mov rcx,[rsi+00000398]
-Cyberpunk2077.exe+1A7E40F: 41 8B D4              - mov edx,r12d
-Cyberpunk2077.exe+1A7E412: E8 49 39 FE FF        - call Cyberpunk2077.exe+1A61D60
+Cyberpunk2077.exe+1A55BC7: 48 8D 8E 28 03 00 00  - lea rcx,[rsi+00000328]
+Cyberpunk2077.exe+1A55BCE: E8 AD 0E FF 00        - call Cyberpunk2077.exe+2A46A80
+Cyberpunk2077.exe+1A55BD3: 0F B7 8E 40 03 00 00  - movzx ecx,word ptr [rsi+00000340]
+Cyberpunk2077.exe+1A55BDA: 66 3B CF              - cmp cx,di
+Cyberpunk2077.exe+1A55BDD: 66 0F 46 F9           - cmovbe di,cx
+Cyberpunk2077.exe+1A55BE1: 66 2B CF              - sub cx,di
+Cyberpunk2077.exe+1A55BE4: 44 0F B7 E1           - movzx r12d,cx
+Cyberpunk2077.exe+1A55BE8: 48 8B 8E 98 03 00 00  - mov rcx,[rsi+00000398]
+Cyberpunk2077.exe+1A55BEF: 41 8B D4              - mov edx,r12d
+Cyberpunk2077.exe+1A55BF2: E8 49 39 FE FF        - call Cyberpunk2077.exe+1A39540
 // ---------- INJECTING HERE ----------
-Cyberpunk2077.exe+1A7E417: 44 89 A6 40 03 00 00  - mov [rsi+00000340],r12d
+Cyberpunk2077.exe+1A55BF7: 44 89 A6 40 03 00 00  - mov [rsi+00000340],r12d
 // ---------- DONE INJECTING  ----------
-Cyberpunk2077.exe+1A7E41E: 38 9E 12 03 00 00     - cmp [rsi+00000312],bl
-Cyberpunk2077.exe+1A7E424: 74 33                 - je Cyberpunk2077.exe+1A7E459
-Cyberpunk2077.exe+1A7E426: 48 8B 4C 24 30        - mov rcx,[rsp+30]
-Cyberpunk2077.exe+1A7E42B: 48 85 C9              - test rcx,rcx
-Cyberpunk2077.exe+1A7E42E: 74 29                 - je Cyberpunk2077.exe+1A7E459
-Cyberpunk2077.exe+1A7E430: 0F 10 86 E0 02 00 00  - movups xmm0,[rsi+000002E0]
-Cyberpunk2077.exe+1A7E437: 0F 11 85 88 01 00 00  - movups [rbp+00000188],xmm0
-Cyberpunk2077.exe+1A7E43E: 48 8B 01              - mov rax,[rcx]
-Cyberpunk2077.exe+1A7E441: FF 90 B8 01 00 00     - call qword ptr [rax+000001B8]
-Cyberpunk2077.exe+1A7E447: 45 8B C4              - mov r8d,r12d
+Cyberpunk2077.exe+1A55BFE: 38 9E 12 03 00 00     - cmp [rsi+00000312],bl
+Cyberpunk2077.exe+1A55C04: 74 33                 - je Cyberpunk2077.exe+1A55C39
+Cyberpunk2077.exe+1A55C06: 48 8B 4C 24 30        - mov rcx,[rsp+30]
+Cyberpunk2077.exe+1A55C0B: 48 85 C9              - test rcx,rcx
+Cyberpunk2077.exe+1A55C0E: 74 29                 - je Cyberpunk2077.exe+1A55C39
+Cyberpunk2077.exe+1A55C10: 0F 10 86 E0 02 00 00  - movups xmm0,[rsi+000002E0]
+Cyberpunk2077.exe+1A55C17: 0F 11 85 88 01 00 00  - movups [rbp+00000188],xmm0
+Cyberpunk2077.exe+1A55C1E: 48 8B 01              - mov rax,[rcx]
+Cyberpunk2077.exe+1A55C21: FF 90 B8 01 00 00     - call qword ptr [rax+000001B8]
+Cyberpunk2077.exe+1A55C27: 45 8B C4              - mov r8d,r12d
 }
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
       <ID>15</ID>
       <Description>"Infinite Grenades"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Cyberpunk2077.exe
   Version: 
@@ -279,31 +279,31 @@ unregistersymbol(INJECT_GRENADES)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+17A7923
+// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+17A7943
 
-Cyberpunk2077.exe+17A7903: BA 01 00 00 00     - mov edx,00000001
-Cyberpunk2077.exe+17A7908: F3 48 0F 2C C0     - cvttss2si rax,xmm0
-Cyberpunk2077.exe+17A790D: 3B C2              - cmp eax,edx
-Cyberpunk2077.exe+17A790F: 0F 43 D0           - cmovae edx,eax
-Cyberpunk2077.exe+17A7912: 33 C0              - xor eax,eax
-Cyberpunk2077.exe+17A7914: 03 CB              - add ecx,ebx
-Cyberpunk2077.exe+17A7916: 48 8B 5C 24 30     - mov rbx,[rsp+30]
-Cyberpunk2077.exe+17A791B: 0F 49 C1           - cmovns eax,ecx
-Cyberpunk2077.exe+17A791E: 3B C2              - cmp eax,edx
-Cyberpunk2077.exe+17A7920: 0F 4E D0           - cmovle edx,eax
+Cyberpunk2077.exe+17A7923: BA 01 00 00 00     - mov edx,00000001
+Cyberpunk2077.exe+17A7928: F3 48 0F 2C C0     - cvttss2si rax,xmm0
+Cyberpunk2077.exe+17A792D: 3B C2              - cmp eax,edx
+Cyberpunk2077.exe+17A792F: 0F 43 D0           - cmovae edx,eax
+Cyberpunk2077.exe+17A7932: 33 C0              - xor eax,eax
+Cyberpunk2077.exe+17A7934: 03 CB              - add ecx,ebx
+Cyberpunk2077.exe+17A7936: 48 8B 5C 24 30     - mov rbx,[rsp+30]
+Cyberpunk2077.exe+17A793B: 0F 49 C1           - cmovns eax,ecx
+Cyberpunk2077.exe+17A793E: 3B C2              - cmp eax,edx
+Cyberpunk2077.exe+17A7940: 0F 4E D0           - cmovle edx,eax
 // ---------- INJECTING HERE ----------
-Cyberpunk2077.exe+17A7923: 89 97 E8 00 00 00  - mov [rdi+000000E8],edx
+Cyberpunk2077.exe+17A7943: 89 97 E8 00 00 00  - mov [rdi+000000E8],edx
 // ---------- DONE INJECTING  ----------
-Cyberpunk2077.exe+17A7929: 48 83 C4 20        - add rsp,20
-Cyberpunk2077.exe+17A792D: 5F                 - pop rdi
-Cyberpunk2077.exe+17A792E: C3                 - ret 
-Cyberpunk2077.exe+17A792F: CC                 - int 3 
-Cyberpunk2077.exe+17A7930: 48 89 5C 24 08     - mov [rsp+08],rbx
-Cyberpunk2077.exe+17A7935: 57                 - push rdi
-Cyberpunk2077.exe+17A7936: 48 83 EC 20        - sub rsp,20
-Cyberpunk2077.exe+17A793A: 48 8B CA           - mov rcx,rdx
-Cyberpunk2077.exe+17A793D: 48 8B DA           - mov rbx,rdx
-Cyberpunk2077.exe+17A7940: E8 8B C3 FF FF     - call Cyberpunk2077.exe+17A3CD0
+Cyberpunk2077.exe+17A7949: 48 83 C4 20        - add rsp,20
+Cyberpunk2077.exe+17A794D: 5F                 - pop rdi
+Cyberpunk2077.exe+17A794E: C3                 - ret
+Cyberpunk2077.exe+17A794F: CC                 - int 3
+Cyberpunk2077.exe+17A7950: 48 89 5C 24 08     - mov [rsp+08],rbx
+Cyberpunk2077.exe+17A7955: 57                 - push rdi
+Cyberpunk2077.exe+17A7956: 48 83 EC 20        - sub rsp,20
+Cyberpunk2077.exe+17A795A: 48 8B CA           - mov rcx,rdx
+Cyberpunk2077.exe+17A795D: 48 8B DA           - mov rbx,rdx
+Cyberpunk2077.exe+17A7960: E8 8B C3 FF FF     - call Cyberpunk2077.exe+17A3CF0
 }
 </AssemblerScript>
     </CheatEntry>
@@ -359,38 +359,38 @@ unregistersymbol(INJECT_MONEY)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+17A84E0
+// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+17A8500
 
-Cyberpunk2077.exe+17A84C0: BA 01 00 00 00  - mov edx,00000001
-Cyberpunk2077.exe+17A84C5: F3 48 0F 2C C0  - cvttss2si rax,xmm0
-Cyberpunk2077.exe+17A84CA: 3B C2           - cmp eax,edx
-Cyberpunk2077.exe+17A84CC: 0F 43 D0        - cmovae edx,eax
-Cyberpunk2077.exe+17A84CF: 33 C0           - xor eax,eax
-Cyberpunk2077.exe+17A84D1: 03 CB           - add ecx,ebx
-Cyberpunk2077.exe+17A84D3: 48 8B 5C 24 30  - mov rbx,[rsp+30]
-Cyberpunk2077.exe+17A84D8: 0F 49 C1        - cmovns eax,ecx
-Cyberpunk2077.exe+17A84DB: 3B C2           - cmp eax,edx
-Cyberpunk2077.exe+17A84DD: 0F 4E D0        - cmovle edx,eax
+Cyberpunk2077.exe+17A84E0: BA 01 00 00 00  - mov edx,00000001
+Cyberpunk2077.exe+17A84E5: F3 48 0F 2C C0  - cvttss2si rax,xmm0
+Cyberpunk2077.exe+17A84EA: 3B C2           - cmp eax,edx
+Cyberpunk2077.exe+17A84EC: 0F 43 D0        - cmovae edx,eax
+Cyberpunk2077.exe+17A84EF: 33 C0           - xor eax,eax
+Cyberpunk2077.exe+17A84F1: 03 CB           - add ecx,ebx
+Cyberpunk2077.exe+17A84F3: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+Cyberpunk2077.exe+17A84F8: 0F 49 C1        - cmovns eax,ecx
+Cyberpunk2077.exe+17A84FB: 3B C2           - cmp eax,edx
+Cyberpunk2077.exe+17A84FD: 0F 4E D0        - cmovle edx,eax
 // ---------- INJECTING HERE ----------
-Cyberpunk2077.exe+17A84E0: 89 57 78        - mov [rdi+78],edx
+Cyberpunk2077.exe+17A8500: 89 57 78        - mov [rdi+78],edx
 // ---------- DONE INJECTING  ----------
-Cyberpunk2077.exe+17A84E3: 48 83 C4 20     - add rsp,20
-Cyberpunk2077.exe+17A84E7: 5F              - pop rdi
-Cyberpunk2077.exe+17A84E8: C3              - ret 
-Cyberpunk2077.exe+17A84E9: CC              - int 3 
-Cyberpunk2077.exe+17A84EA: CC              - int 3 
-Cyberpunk2077.exe+17A84EB: CC              - int 3 
-Cyberpunk2077.exe+17A84EC: CC              - int 3 
-Cyberpunk2077.exe+17A84ED: CC              - int 3 
-Cyberpunk2077.exe+17A84EE: CC              - int 3 
-Cyberpunk2077.exe+17A84EF: CC              - int 3 
+Cyberpunk2077.exe+17A8503: 48 83 C4 20     - add rsp,20
+Cyberpunk2077.exe+17A8507: 5F              - pop rdi
+Cyberpunk2077.exe+17A8508: C3              - ret
+Cyberpunk2077.exe+17A8509: CC              - int 3
+Cyberpunk2077.exe+17A850A: CC              - int 3
+Cyberpunk2077.exe+17A850B: CC              - int 3
+Cyberpunk2077.exe+17A850C: CC              - int 3
+Cyberpunk2077.exe+17A850D: CC              - int 3
+Cyberpunk2077.exe+17A850E: CC              - int 3
+Cyberpunk2077.exe+17A850F: CC              - int 3
 }
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
       <ID>32</ID>
       <Description>"Infinite Stamina + Health"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Cyberpunk2077.exe
   Version:
@@ -441,31 +441,31 @@ unregistersymbol(INJECT_STAMINA_HEALTH)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+192F85A
+// ORIGINAL CODE - INJECTION POINT: Cyberpunk2077.exe+192F87A
 
-Cyberpunk2077.exe+192F829: F3 0F 10 82 94 01 00 00        - movss xmm0,[rdx+00000194]
-Cyberpunk2077.exe+192F831: 0F 57 D2                       - xorps xmm2,xmm2
-Cyberpunk2077.exe+192F834: 0F 2F CA                       - comiss xmm1,xmm2
-Cyberpunk2077.exe+192F837: F3 0F 10 1D 85 65 5E 01        - movss xmm3,[Cyberpunk2077.exe+2F15DC4]
-Cyberpunk2077.exe+192F83F: F3 0F 58 C3                    - addss xmm0,xmm3
-Cyberpunk2077.exe+192F843: 73 03                          - jae Cyberpunk2077.exe+192F848
-Cyberpunk2077.exe+192F845: 0F 57 C9                       - xorps xmm1,xmm1
-Cyberpunk2077.exe+192F848: 80 8A 9F 01 00 00 04           - or byte ptr [rdx+0000019F],04
-Cyberpunk2077.exe+192F84F: F3 0F 5D C1                    - minss xmm0,xmm1
-Cyberpunk2077.exe+192F853: 80 BA 9D 01 00 00 02           - cmp byte ptr [rdx+0000019D],02
+Cyberpunk2077.exe+192F849: F3 0F 10 82 94 01 00 00        - movss xmm0,[rdx+00000194]
+Cyberpunk2077.exe+192F851: 0F 57 D2                       - xorps xmm2,xmm2
+Cyberpunk2077.exe+192F854: 0F 2F CA                       - comiss xmm1,xmm2
+Cyberpunk2077.exe+192F857: F3 0F 10 1D 65 65 5E 01        - movss xmm3,[Cyberpunk2077.exe+2F15DC4]
+Cyberpunk2077.exe+192F85F: F3 0F 58 C3                    - addss xmm0,xmm3
+Cyberpunk2077.exe+192F863: 73 03                          - jae Cyberpunk2077.exe+192F868
+Cyberpunk2077.exe+192F865: 0F 57 C9                       - xorps xmm1,xmm1
+Cyberpunk2077.exe+192F868: 80 8A 9F 01 00 00 04           - or byte ptr [rdx+0000019F],04
+Cyberpunk2077.exe+192F86F: F3 0F 5D C1                    - minss xmm0,xmm1
+Cyberpunk2077.exe+192F873: 80 BA 9D 01 00 00 02           - cmp byte ptr [rdx+0000019D],02
 // ---------- INJECTING HERE ----------
-Cyberpunk2077.exe+192F85A: F3 0F 11 82 90 01 00 00        - movss [rdx+00000190],xmm0
+Cyberpunk2077.exe+192F87A: F3 0F 11 82 90 01 00 00        - movss [rdx+00000190],xmm0
 // ---------- DONE INJECTING  ----------
-Cyberpunk2077.exe+192F862: 75 22                          - jne Cyberpunk2077.exe+192F886
-Cyberpunk2077.exe+192F864: F3 0F 5C C3                    - subss xmm0,xmm3
-Cyberpunk2077.exe+192F868: 0F 2F C2                       - comiss xmm0,xmm2
-Cyberpunk2077.exe+192F86B: F3 0F 11 82 94 01 00 00        - movss [rdx+00000194],xmm0
-Cyberpunk2077.exe+192F873: 77 11                          - ja Cyberpunk2077.exe+192F886
-Cyberpunk2077.exe+192F875: C7 82 94 01 00 00 00 00 00 00  - mov [rdx+00000194],00000000
-Cyberpunk2077.exe+192F87F: C6 82 9D 01 00 00 00           - mov byte ptr [rdx+0000019D],00
-Cyberpunk2077.exe+192F886: C3                             - ret
-Cyberpunk2077.exe+192F887: CC                             - int 3
-Cyberpunk2077.exe+192F888: CC                             - int 3
+Cyberpunk2077.exe+192F882: 75 22                          - jne Cyberpunk2077.exe+192F8A6
+Cyberpunk2077.exe+192F884: F3 0F 5C C3                    - subss xmm0,xmm3
+Cyberpunk2077.exe+192F888: 0F 2F C2                       - comiss xmm0,xmm2
+Cyberpunk2077.exe+192F88B: F3 0F 11 82 94 01 00 00        - movss [rdx+00000194],xmm0
+Cyberpunk2077.exe+192F893: 77 11                          - ja Cyberpunk2077.exe+192F8A6
+Cyberpunk2077.exe+192F895: C7 82 94 01 00 00 00 00 00 00  - mov [rdx+00000194],00000000
+Cyberpunk2077.exe+192F89F: C6 82 9D 01 00 00 00           - mov byte ptr [rdx+0000019D],00
+Cyberpunk2077.exe+192F8A6: C3                             - ret
+Cyberpunk2077.exe+192F8A7: CC                             - int 3
+Cyberpunk2077.exe+192F8A8: CC                             - int 3
 }
 </AssemblerScript>
     </CheatEntry>
