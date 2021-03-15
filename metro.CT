@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"Infinite Ammo"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_INF_AMMO,metro.exe+2B9E15)
+alloc(newmem,$1000,INJECT_INF_AMMO)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  inc esi
+  jmp return
+
+INJECT_INF_AMMO:
+  jmp newmem
+return:
+registersymbol(INJECT_INF_AMMO)
+
+[DISABLE]
+
+INJECT_INF_AMMO:
+  db 41 FF C8 FF C6
+
+unregistersymbol(INJECT_INF_AMMO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: metro.exe+2B9E15
+
+metro.exe+2B9DF7: 48 0F 44 CB           - cmove rcx,rbx
+metro.exe+2B9DFB: 48 8B 01              - mov rax,[rcx]
+metro.exe+2B9DFE: FF 90 78 0E 00 00     - call qword ptr [rax+00000E78]
+metro.exe+2B9E04: 44 8B C0              - mov r8d,eax
+metro.exe+2B9E07: 8B C3                 - mov eax,ebx
+metro.exe+2B9E09: 85 ED                 - test ebp,ebp
+metro.exe+2B9E0B: 74 13                 - je metro.exe+2B9E20
+metro.exe+2B9E0D: 0F 1F 00              - nop dword ptr [rax]
+metro.exe+2B9E10: 45 85 C0              - test r8d,r8d
+metro.exe+2B9E13: 74 0B                 - je metro.exe+2B9E20
+// ---------- INJECTING HERE ----------
+metro.exe+2B9E15: 41 FF C8              - dec r8d
+// ---------- DONE INJECTING  ----------
+metro.exe+2B9E18: FF C6                 - inc esi
+metro.exe+2B9E1A: FF C0                 - inc eax
+metro.exe+2B9E1C: 3B C5                 - cmp eax,ebp
+metro.exe+2B9E1E: 75 F0                 - jne metro.exe+2B9E10
+metro.exe+2B9E20: 45 85 FF              - test r15d,r15d
+metro.exe+2B9E23: 75 59                 - jne metro.exe+2B9E7E
+metro.exe+2B9E25: 48 8B 87 60 0A 00 00  - mov rax,[rdi+00000A60]
+metro.exe+2B9E2C: 48 8B 10              - mov rdx,[rax]
+metro.exe+2B9E2F: 48 85 D2              - test rdx,rdx
+metro.exe+2B9E32: 48 8D 8A 60 FF FF FF  - lea rcx,[rdx-000000A0]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"Infinite Clip"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_CLIP,metro.exe+2BE509)
+alloc(newmem,$1000,INJECT_CLIP)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov edx,ebx
+  mov rcx,rsi
+  jmp return
+
+INJECT_CLIP:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT_CLIP)
+
+[DISABLE]
+
+INJECT_CLIP:
+  db 2B DF 8B D3 48 8B CE
+
+unregistersymbol(INJECT_CLIP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: metro.exe+2BE509
+
+metro.exe+2BE4CF: 44 0F 28 AC 24 A0 01 00 00  - movaps xmm13,[rsp+000001A0]
+metro.exe+2BE4D8: F6 40 7C 10                 - test byte ptr [rax+7C],10
+metro.exe+2BE4DC: 44 0F 28 A4 24 B0 01 00 00  - movaps xmm12,[rsp+000001B0]
+metro.exe+2BE4E5: 44 0F 28 9C 24 C0 01 00 00  - movaps xmm11,[rsp+000001C0]
+metro.exe+2BE4EE: 44 0F 28 94 24 D0 01 00 00  - movaps xmm10,[rsp+000001D0]
+metro.exe+2BE4F7: 44 0F 28 8C 24 E0 01 00 00  - movaps xmm9,[rsp+000001E0]
+metro.exe+2BE500: 75 14                       - jne metro.exe+2BE516
+metro.exe+2BE502: 85 DB                       - test ebx,ebx
+metro.exe+2BE504: 74 10                       - je metro.exe+2BE516
+metro.exe+2BE506: 48 8B 06                    - mov rax,[rsi]
+// ---------- INJECTING HERE ----------
+metro.exe+2BE509: 2B DF                       - sub ebx,edi
+// ---------- DONE INJECTING  ----------
+metro.exe+2BE50B: 8B D3                       - mov edx,ebx
+metro.exe+2BE50D: 48 8B CE                    - mov rcx,rsi
+metro.exe+2BE510: FF 90 50 13 00 00           - call qword ptr [rax+00001350]
+metro.exe+2BE516: 48 8B CE                    - mov rcx,rsi
+metro.exe+2BE519: E8 A2 D0 FE FF              - call metro.exe+2AB5C0
+metro.exe+2BE51E: 48 8B 06                    - mov rax,[rsi]
+metro.exe+2BE521: 48 8B CE                    - mov rcx,rsi
+metro.exe+2BE524: FF 90 70 10 00 00           - call qword ptr [rax+00001070]
+metro.exe+2BE52A: 48 8D 4D 90                 - lea rcx,[rbp-70]
+metro.exe+2BE52E: E8 31 4A F0 FF              - call metro.exe+1C2F64
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"Infinite Clip 2"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_CLIP_2,metro.exe+2EF27B)
+alloc(newmem,$1000,INJECT_CLIP_2)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov byte ptr [rsi+rbx+00000C04],00
+  jmp return
+
+INJECT_CLIP_2:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT_CLIP_2)
+
+[DISABLE]
+
+INJECT_CLIP_2:
+  db C6 84 1E 04 0C 00 00 01
+
+unregistersymbol(INJECT_CLIP_2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: metro.exe+2EF27B
+
+metro.exe+2EF248: 0F 94 C0                 - sete al
+metro.exe+2EF24B: 80 BB 01 0C 00 00 01     - cmp byte ptr [rbx+00000C01],01
+metro.exe+2EF252: 88 83 06 0C 00 00        - mov [rbx+00000C06],al
+metro.exe+2EF258: 0F 94 C0                 - sete al
+metro.exe+2EF25B: 80 BB 03 0C 00 00 01     - cmp byte ptr [rbx+00000C03],01
+metro.exe+2EF262: 88 83 05 0C 00 00        - mov [rbx+00000C05],al
+metro.exe+2EF268: 0F 94 C0                 - sete al
+metro.exe+2EF26B: 88 83 07 0C 00 00        - mov [rbx+00000C07],al
+metro.exe+2EF271: EB 1A                    - jmp metro.exe+2EF28D
+metro.exe+2EF273: 80 BC 1E 02 0C 00 00 01  - cmp byte ptr [rsi+rbx+00000C02],01
+// ---------- INJECTING HERE ----------
+metro.exe+2EF27B: C6 84 1E 04 0C 00 00 01  - mov byte ptr [rsi+rbx+00000C04],01
+// ---------- DONE INJECTING  ----------
+metro.exe+2EF283: 0F 94 C0                 - sete al
+metro.exe+2EF286: 88 84 1E 06 0C 00 00     - mov [rsi+rbx+00000C06],al
+metro.exe+2EF28D: 48 8D BB F0 04 00 00     - lea rdi,[rbx+000004F0]
+metro.exe+2EF294: C6 83 8C 0A 00 00 01     - mov byte ptr [rbx+00000A8C],01
+metro.exe+2EF29B: 48 8B 07                 - mov rax,[rdi]
+metro.exe+2EF29E: 48 8B CF                 - mov rcx,rdi
+metro.exe+2EF2A1: FF 50 40                 - call qword ptr [rax+40]
+metro.exe+2EF2A4: 48 8B 03                 - mov rax,[rbx]
+metro.exe+2EF2A7: 0F 57 C9                 - xorps xmm1,xmm1
+metro.exe+2EF2AA: 48 8B CB                 - mov rcx,rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"Infinite Clip 3"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_CLIP_3,metro.exe+2EF242)
+alloc(newmem,$1000,INJECT_CLIP_3)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+00000C04],0
+  jmp return
+
+INJECT_CLIP_3:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_CLIP_3)
+
+[DISABLE]
+
+INJECT_CLIP_3:
+  db 88 83 04 0C 00 00
+
+unregistersymbol(INJECT_CLIP_3)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: metro.exe+2EF242
+
+metro.exe+2EF219: 75 11                    - jne metro.exe+2EF22C
+metro.exe+2EF21B: 48 8B 03                 - mov rax,[rbx]
+metro.exe+2EF21E: 48 8B CB                 - mov rcx,rbx
+metro.exe+2EF221: FF 90 C0 11 00 00        - call qword ptr [rax+000011C0]
+metro.exe+2EF227: E9 D4 00 00 00           - jmp metro.exe+2EF300
+metro.exe+2EF22C: 83 FE 04                 - cmp esi,04
+metro.exe+2EF22F: 75 42                    - jne metro.exe+2EF273
+metro.exe+2EF231: 80 BB 00 0C 00 00 01     - cmp byte ptr [rbx+00000C00],01
+metro.exe+2EF238: 0F 94 C0                 - sete al
+metro.exe+2EF23B: 80 BB 02 0C 00 00 01     - cmp byte ptr [rbx+00000C02],01
+// ---------- INJECTING HERE ----------
+metro.exe+2EF242: 88 83 04 0C 00 00        - mov [rbx+00000C04],al
+// ---------- DONE INJECTING  ----------
+metro.exe+2EF248: 0F 94 C0                 - sete al
+metro.exe+2EF24B: 80 BB 01 0C 00 00 01     - cmp byte ptr [rbx+00000C01],01
+metro.exe+2EF252: 88 83 06 0C 00 00        - mov [rbx+00000C06],al
+metro.exe+2EF258: 0F 94 C0                 - sete al
+metro.exe+2EF25B: 80 BB 03 0C 00 00 01     - cmp byte ptr [rbx+00000C03],01
+metro.exe+2EF262: 88 83 05 0C 00 00        - mov [rbx+00000C05],al
+metro.exe+2EF268: 0F 94 C0                 - sete al
+metro.exe+2EF26B: 88 83 07 0C 00 00        - mov [rbx+00000C07],al
+metro.exe+2EF271: EB 1A                    - jmp metro.exe+2EF28D
+metro.exe+2EF273: 80 BC 1E 02 0C 00 00 01  - cmp byte ptr [rsi+rbx+00000C02],01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>36</ID>
+      <Description>"Infinite Gas Mask"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_FILTER,metro.exe+33B711)
+alloc(newmem,$1000,INJECT_FILTER)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movss [rsi+0000044C],xmm0
+  jmp return
+
+INJECT_FILTER:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT_FILTER)
+
+[DISABLE]
+
+INJECT_FILTER:
+  db F3 0F 11 96 4C 04 00 00
+
+unregistersymbol(INJECT_FILTER)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: metro.exe+33B711
+
+metro.exe+33B6DD: 80 3D 46 02 9C 00 00        - cmp byte ptr [metro.exe+CFB92A],00
+metro.exe+33B6E4: 44 0F 28 84 24 C0 00 00 00  - movaps xmm8,[rsp+000000C0]
+metro.exe+33B6ED: 75 03                       - jne metro.exe+33B6F2
+metro.exe+33B6EF: 0F 57 FF                    - xorps xmm7,xmm7
+metro.exe+33B6F2: F3 0F 10 05 F2 8B 8E 00     - movss xmm0,[metro.exe+C242EC]
+metro.exe+33B6FA: F3 0F 10 55 67              - movss xmm2,[rbp+67]
+metro.exe+33B6FF: F3 0F 5D D0                 - minss xmm2,xmm0
+metro.exe+33B703: F3 0F 11 45 77              - movss [rbp+77],xmm0
+metro.exe+33B708: F3 0F 11 7D 7F              - movss [rbp+7F],xmm7
+metro.exe+33B70D: F3 0F 5F D7                 - maxss xmm2,xmm7
+// ---------- INJECTING HERE ----------
+metro.exe+33B711: F3 0F 11 96 4C 04 00 00     - movss [rsi+0000044C],xmm2
+// ---------- DONE INJECTING  ----------
+metro.exe+33B719: F3 0F 11 55 67              - movss [rbp+67],xmm2
+metro.exe+33B71E: 41 0F 54 D1                 - andps xmm2,xmm9
+metro.exe+33B722: 0F 2F 15 93 84 8E 00        - comiss xmm2,[metro.exe+C23BBC]
+metro.exe+33B729: 0F 83 9E 00 00 00           - jae metro.exe+33B7CD
+metro.exe+33B72F: 0F 2F B3 08 03 00 00        - comiss xmm6,[rbx+00000308]
+metro.exe+33B736: 0F 83 91 00 00 00           - jae metro.exe+33B7CD
+metro.exe+33B73C: 48 8B CE                    - mov rcx,rsi
+metro.exe+33B73F: E8 EC 38 00 00              - call metro.exe+33F030
+metro.exe+33B744: 48 85 C0                    - test rax,rax
+metro.exe+33B747: 74 15                       - je metro.exe+33B75E
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"No overheat"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_OVERHEAT,metro.exe+2E7F06)
+alloc(newmem,$1000,INJECT_OVERHEAT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  xorps xmm2,xmm2
+  movss [rdi+00000CC0],xmm2
+  jmp return
+
+INJECT_OVERHEAT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT_OVERHEAT)
+
+[DISABLE]
+
+INJECT_OVERHEAT:
+  db F3 0F 11 97 C0 0C 00 00
+
+unregistersymbol(INJECT_OVERHEAT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: metro.exe+2E7F06
+
+metro.exe+2E7ED0: 45 0F 57 C0                 - xorps xmm8,xmm8
+metro.exe+2E7ED4: C7 44 24 48 00 00 00 00     - mov [rsp+48],00000000
+metro.exe+2E7EDC: F3 0F 10 28                 - movss xmm5,[rax]
+metro.exe+2E7EE0: 48 8D 81 BC 14 00 00        - lea rax,[rcx+000014BC]
+metro.exe+2E7EE7: 48 0F 44 C2                 - cmove rax,rdx
+metro.exe+2E7EEB: F3 0F 10 20                 - movss xmm4,[rax]
+metro.exe+2E7EEF: F3 0F 5D D4                 - minss xmm2,xmm4
+metro.exe+2E7EF3: F3 0F 11 64 24 58           - movss [rsp+58],xmm4
+metro.exe+2E7EF9: F3 0F 5C E5                 - subss xmm4,xmm5
+metro.exe+2E7EFD: F3 0F 5F 94 24 D0 00 00 00  - maxss xmm2,[rsp+000000D0]
+// ---------- INJECTING HERE ----------
+metro.exe+2E7F06: F3 0F 11 97 C0 0C 00 00     - movss [rdi+00000CC0],xmm2
+// ---------- DONE INJECTING  ----------
+metro.exe+2E7F0E: 48 83 BF B8 05 00 00 00     - cmp qword ptr [rdi+000005B8],00
+metro.exe+2E7F16: F3 0F 10 9F C4 0C 00 00     - movss xmm3,[rdi+00000CC4]
+metro.exe+2E7F1E: F3 0F 5C DD                 - subss xmm3,xmm5
+metro.exe+2E7F22: F3 0F 5E DC                 - divss xmm3,xmm4
+metro.exe+2E7F26: 0F 28 D3                    - movaps xmm2,xmm3
+metro.exe+2E7F29: F3 0F 10 9F C0 0C 00 00     - movss xmm3,[rdi+00000CC0]
+metro.exe+2E7F31: F3 0F 5D 94 24 D8 00 00 00  - minss xmm2,[rsp+000000D8]
+metro.exe+2E7F3A: F3 0F 5C DD                 - subss xmm3,xmm5
+metro.exe+2E7F3E: F3 0F 5F 54 24 40           - maxss xmm2,[rsp+40]
+metro.exe+2E7F44: F3 0F 5E DC                 - divss xmm3,xmm4
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Infinite Resources"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_RESOURCES,AoE2DE_s.exe+D49D46)
+alloc(newmem,$1000,INJECT_RESOURCES)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  push rax
+  mov rax,1869F
+  cvtsi2ss xmm0,rax
+  pop rax
+  movss [rsp+48],xmm0
+  jmp return
+
+INJECT_RESOURCES+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_RESOURCES)
+
+[DISABLE]
+
+INJECT_RESOURCES+01:
+  db F3 0F 11 44 24 48
+
+unregistersymbol(INJECT_RESOURCES)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AoE2DE_s.exe+D49D46
+
+AoE2DE_s.exe+D49D17: 48 8B 44 24 40     - mov rax,[rsp+40]
+AoE2DE_s.exe+D49D1C: 48 83 C0 03        - add rax,03
+AoE2DE_s.exe+D49D20: 48 89 44 24 40     - mov [rsp+40],rax
+AoE2DE_s.exe+D49D25: 48 8B 44 24 40     - mov rax,[rsp+40]
+AoE2DE_s.exe+D49D2A: 49 2B C2           - sub rax,r10
+AoE2DE_s.exe+D49D2D: 48 89 44 24 40     - mov [rsp+40],rax
+AoE2DE_s.exe+D49D32: 48 8B 44 24 40     - mov rax,[rsp+40]
+AoE2DE_s.exe+D49D37: 48 89 44 24 40     - mov [rsp+40],rax
+AoE2DE_s.exe+D49D3C: F3 0F 10 44 24 40  - movss xmm0,[rsp+40]
+AoE2DE_s.exe+D49D42: F3 0F 5C C1        - subss xmm0,xmm1
+// ---------- INJECTING HERE ----------
+AoE2DE_s.exe+D49D46: F3 0F 11 44 24 48  - movss [rsp+48],xmm0
+// ---------- DONE INJECTING  ----------
+AoE2DE_s.exe+D49D4C: 48 8B 44 24 48     - mov rax,[rsp+48]
+AoE2DE_s.exe+D49D51: 48 89 44 24 40     - mov [rsp+40],rax
+AoE2DE_s.exe+D49D56: 48 8B 44 24 40     - mov rax,[rsp+40]
+AoE2DE_s.exe+D49D5B: 49 03 C2           - add rax,r10
+AoE2DE_s.exe+D49D5E: 48 89 44 24 40     - mov [rsp+40],rax
+AoE2DE_s.exe+D49D63: 48 8B 44 24 40     - mov rax,[rsp+40]
+AoE2DE_s.exe+D49D68: 48 83 E8 03        - sub rax,03
+AoE2DE_s.exe+D49D6C: 48 89 44 24 40     - mov [rsp+40],rax
+AoE2DE_s.exe+D49D71: 48 8B 44 24 40     - mov rax,[rsp+40]
+AoE2DE_s.exe+D49D76: 49 33 C3           - xor rax,r11
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Insta Build"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_BUILD,AoE2DE_s.exe+F2090E)
+alloc(newmem,$1000,INJECT_BUILD)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov rax,[rsi+10]
+  jmp return
+
+INJECT_BUILD:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_BUILD)
+
+[DISABLE]
+
+INJECT_BUILD:
+  db 76 39 48 8B 46 10
+
+unregistersymbol(INJECT_BUILD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AoE2DE_s.exe+F2090E
+
+AoE2DE_s.exe+F208E1: 48 89 45 D0              - mov [rbp-30],rax
+AoE2DE_s.exe+F208E5: 48 8B 45 D0              - mov rax,[rbp-30]
+AoE2DE_s.exe+F208E9: F3 0F 58 8E 58 04 00 00  - addss xmm1,[rsi+00000458]
+AoE2DE_s.exe+F208F1: 48 83 E8 0B              - sub rax,0B
+AoE2DE_s.exe+F208F5: 48 89 45 D0              - mov [rbp-30],rax
+AoE2DE_s.exe+F208F9: 48 8B 45 D0              - mov rax,[rbp-30]
+AoE2DE_s.exe+F208FD: 0F BF 88 DA 02 00 00     - movsx ecx,word ptr [rax+000002DA]
+AoE2DE_s.exe+F20904: 66 0F 6E C1              - movd xmm0,ecx
+AoE2DE_s.exe+F20908: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+AoE2DE_s.exe+F2090B: 0F 2F C8                 - comiss xmm1,xmm0
+// ---------- INJECTING HERE ----------
+AoE2DE_s.exe+F2090E: 76 39                    - jna AoE2DE_s.exe+F20949
+// ---------- DONE INJECTING  ----------
+AoE2DE_s.exe+F20910: 48 8B 46 10              - mov rax,[rsi+10]
+AoE2DE_s.exe+F20914: 48 89 45 D0              - mov [rbp-30],rax
+AoE2DE_s.exe+F20918: 48 8B 45 D0              - mov rax,[rbp-30]
+AoE2DE_s.exe+F2091C: 49 03 C4                 - add rax,r12
+AoE2DE_s.exe+F2091F: 48 89 45 D0              - mov [rbp-30],rax
+AoE2DE_s.exe+F20923: 48 8B 45 D0              - mov rax,[rbp-30]
+AoE2DE_s.exe+F20927: 48 83 E8 0B              - sub rax,0B
+AoE2DE_s.exe+F2092B: 48 89 45 D0              - mov [rbp-30],rax
+AoE2DE_s.exe+F2092F: 48 8B 45 D0              - mov rax,[rbp-30]
+AoE2DE_s.exe+F20933: 0F BF 88 DA 02 00 00     - movsx ecx,word ptr [rax+000002DA]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"Insta Create Character"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_CHAR_BUILD,AoE2DE_s.exe+7014DD)
+alloc(newmem,$1000,INJECT_CHAR_BUILD)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov rcx,rbx
+  jmp return
+
+INJECT_CHAR_BUILD:
+  jmp newmem
+return:
+registersymbol(INJECT_CHAR_BUILD)
+
+[DISABLE]
+
+INJECT_CHAR_BUILD:
+  db 72 0C 48 8B CB
+
+unregistersymbol(INJECT_CHAR_BUILD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AoE2DE_s.exe+7014DD
+
+AoE2DE_s.exe+7014B2: F3 0F 11 73 6C        - movss [rbx+6C],xmm6
+AoE2DE_s.exe+7014B7: 48 0F BF 53 68        - movsx rdx,word ptr [rbx+68]
+AoE2DE_s.exe+7014BC: 48 8B 43 10           - mov rax,[rbx+10]
+AoE2DE_s.exe+7014C0: 48 8B 48 18           - mov rcx,[rax+18]
+AoE2DE_s.exe+7014C4: 48 8B 41 20           - mov rax,[rcx+20]
+AoE2DE_s.exe+7014C8: 48 8B 0C D0           - mov rcx,[rax+rdx*8]
+AoE2DE_s.exe+7014CC: 0F BF 81 DA 02 00 00  - movsx eax,word ptr [rcx+000002DA]
+AoE2DE_s.exe+7014D3: 66 0F 6E C0           - movd xmm0,eax
+AoE2DE_s.exe+7014D7: 0F 5B C0              - cvtdq2ps xmm0,xmm0
+AoE2DE_s.exe+7014DA: 0F 2F F0              - comiss xmm6,xmm0
+// ---------- INJECTING HERE ----------
+AoE2DE_s.exe+7014DD: 72 0C                 - jb AoE2DE_s.exe+7014EB
+// ---------- DONE INJECTING  ----------
+AoE2DE_s.exe+7014DF: 48 8B CB              - mov rcx,rbx
+AoE2DE_s.exe+7014E2: E8 29 F6 FF FF        - call AoE2DE_s.exe+700B10
+AoE2DE_s.exe+7014E7: 84 C0                 - test al,al
+AoE2DE_s.exe+7014E9: 75 04                 - jne AoE2DE_s.exe+7014EF
+AoE2DE_s.exe+7014EB: 32 DB                 - xor bl,bl
+AoE2DE_s.exe+7014ED: EB 02                 - jmp AoE2DE_s.exe+7014F1
+AoE2DE_s.exe+7014EF: B3 01                 - mov bl,01
+AoE2DE_s.exe+7014F1: 48 8B 4C 24 38        - mov rcx,[rsp+38]
+AoE2DE_s.exe+7014F6: 48 85 C9              - test rcx,rcx
+AoE2DE_s.exe+7014F9: 74 05                 - je AoE2DE_s.exe+701500
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"Insta Research"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_RESEARCH,AoE2DE_s.exe+70B7C1)
+alloc(newmem,$1000,INJECT_RESEARCH)
+
+label(code)
+label(prereturn)
+label(return)
+
+newmem:
+
+code:
+  movss xmm0,[rdi+70]
+  pushf
+  push eax
+  push ebx
+  cvtss2si eax,xmm1
+  cvtss2si ebx,xmm0
+  sub eax,ebx
+  cmp eax,1
+  jle prereturn
+
+  cvtss2si eax,xmm1
+  sub eax,1
+  cvtsi2ss xmm0,eax
+  movss [rdi+70],xmm0
+
+prereturn:
+  pop ebx
+  pop eax
+  popf
+  jmp return
+
+INJECT_RESEARCH:
+  jmp newmem
+return:
+registersymbol(INJECT_RESEARCH)
+
+[DISABLE]
+
+INJECT_RESEARCH:
+  db F3 0F 10 47 70
+
+unregistersymbol(INJECT_RESEARCH)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AoE2DE_s.exe+70B7C1
+
+AoE2DE_s.exe+70B798: 4C 8B 40 18           - mov r8,[rax+18]
+AoE2DE_s.exe+70B79C: 4D 8B 90 68 94 00 00  - mov r10,[r8+00009468]
+AoE2DE_s.exe+70B7A3: 49 0F BF C3           - movsx rax,r11w
+AoE2DE_s.exe+70B7A7: 48 8D 0C 80           - lea rcx,[rax+rax*4]
+AoE2DE_s.exe+70B7AB: 48 03 C9              - add rcx,rcx
+AoE2DE_s.exe+70B7AE: 49 8B 12              - mov rdx,[r10]
+AoE2DE_s.exe+70B7B1: 0F BF 44 CA 0C        - movsx eax,word ptr [rdx+rcx*8+0C]
+AoE2DE_s.exe+70B7B6: 66 0F 6E C8           - movd xmm1,eax
+AoE2DE_s.exe+70B7BA: 0F 5B C9              - cvtdq2ps xmm1,xmm1
+AoE2DE_s.exe+70B7BD: F3 0F 58 CA           - addss xmm1,xmm2
+// ---------- INJECTING HERE ----------
+AoE2DE_s.exe+70B7C1: F3 0F 10 47 70        - movss xmm0,[rdi+70]
+// ---------- DONE INJECTING  ----------
+AoE2DE_s.exe+70B7C6: 0F 2F C1              - comiss xmm0,xmm1
+AoE2DE_s.exe+70B7C9: 72 15                 - jb AoE2DE_s.exe+70B7E0
+AoE2DE_s.exe+70B7CB: 66 39 5C CA 12        - cmp [rdx+rcx*8+12],bx
+AoE2DE_s.exe+70B7D0: 7C 15                 - jl AoE2DE_s.exe+70B7E7
+AoE2DE_s.exe+70B7D2: 48 8B 07              - mov rax,[rdi]
+AoE2DE_s.exe+70B7D5: B2 01                 - mov dl,01
+AoE2DE_s.exe+70B7D7: 48 8B CF              - mov rcx,rdi
+AoE2DE_s.exe+70B7DA: FF 90 C8 00 00 00     - call qword ptr [rax+000000C8]
+AoE2DE_s.exe+70B7E0: 32 DB                 - xor bl,bl
+AoE2DE_s.exe+70B7E2: E9 0B 01 00 00        - jmp AoE2DE_s.exe+70B8F2
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
