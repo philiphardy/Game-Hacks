@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Infinite Boost"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+define(INJECT_INF_BOOST,RocketLeague.exe+EBAFDB)
+alloc(newmem,$1000,INJECT_INF_BOOST)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  push eax
+  mov eax,1
+  cvtsi2ss xmm1,eax
+  movss [rcx+000002CC],xmm1
+  pop eax
+  jmp return
+
+INJECT_INF_BOOST:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT_INF_BOOST)
+
+[DISABLE]
+
+INJECT_INF_BOOST:
+  db F3 0F 11 89 CC 02 00 00
+
+unregistersymbol(INJECT_INF_BOOST)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: RocketLeague.exe+EBAFDB
+
+RocketLeague.exe+EBAFAE: 0F 28 C8                    - movaps xmm1,xmm0
+RocketLeague.exe+EBAFB1: 0F 28 C1                    - movaps xmm0,xmm1
+RocketLeague.exe+EBAFB4: F3 0F 5C 81 CC 02 00 00     - subss xmm0,[rcx+000002CC]
+RocketLeague.exe+EBAFBC: 0F 54 05 4D 99 91 00        - andps xmm0,[RocketLeague.exe+17D4910]
+RocketLeague.exe+EBAFC3: 0F 2F 05 8E B5 91 00        - comiss xmm0,[RocketLeague.exe+17D6558]
+RocketLeague.exe+EBAFCA: 73 05                       - jae RocketLeague.exe+EBAFD1
+RocketLeague.exe+EBAFCC: 0F 2E CA                    - ucomiss xmm1,xmm2
+RocketLeague.exe+EBAFCF: 75 32                       - jne RocketLeague.exe+EBB003
+RocketLeague.exe+EBAFD1: 48 8B 01                    - mov rax,[rcx]
+RocketLeague.exe+EBAFD4: 4C 8D 81 10 03 00 00        - lea r8,[rcx+00000310]
+// ---------- INJECTING HERE ----------
+RocketLeague.exe+EBAFDB: F3 0F 11 89 CC 02 00 00     - movss [rcx+000002CC],xmm1
+// ---------- DONE INJECTING  ----------
+RocketLeague.exe+EBAFE3: 4C 8D 4C 24 40              - lea r9,[rsp+40]
+RocketLeague.exe+EBAFE8: 48 8B 15 29 C6 40 01        - mov rdx,[RocketLeague.exe+22C7618]
+RocketLeague.exe+EBAFEF: 48 89 4C 24 40              - mov [rsp+40],rcx
+RocketLeague.exe+EBAFF4: 48 C7 44 24 20 00 00 00 00  - mov qword ptr [rsp+20],00000000
+RocketLeague.exe+EBAFFD: FF 90 28 02 00 00           - call qword ptr [rax+00000228]
+RocketLeague.exe+EBB003: 48 83 C4 38                 - add rsp,38
+RocketLeague.exe+EBB007: C3                          - ret 
+RocketLeague.exe+EBB008: CC                          - int 3 
+RocketLeague.exe+EBB009: CC                          - int 3 
+RocketLeague.exe+EBB00A: CC                          - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
